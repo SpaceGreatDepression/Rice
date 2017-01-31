@@ -1,0 +1,479 @@
+fileFormatVersion: 2
+guid: f02161438bdb04b0f970266fb78ec7b6
+timeCreated: 1485163176
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: bg_illust
+    21300002: menu_subbg
+    21300004: menu_title
+    21300006: menu2
+    21300008: menu3
+    21300010: menu1_(3)duckmyung_sel
+    21300012: menu2_(4)gongchon_nor
+    21300014: menu1_(2)dongbaek_nor
+    21300016: menu3_(1)yongsan_sel
+    21300018: menu2_(2)daesul_sel
+    21300020: menu2_(4)gongchon_sel
+    21300022: menu3_(2)samchun_nor
+    21300024: menu2_(3)kwangui_sel
+    21300026: menu2_(5)sindong_nor
+    21300028: menu1_(1)namgang_sel
+    21300030: menu2_(2)daesul_nor
+    21300032: menu2_(3)kwangui_nor
+    21300034: menu1_(3)duckmyung_nor
+    21300036: menu2_(5)sindong_sel
+    21300038: menu2_(1)jangya_nor
+    21300040: menu2_(1)jangya_sel
+    21300042: menu1_(2)dongbaek_sel
+    21300044: menu3_(2)samchun_sel
+    21300046: menu3_(1)yongsan_nor
+    21300048: menu1_(1)namgang_nor
+    21300050: menu1
+    21300052: btn_back_nor
+    21300054: btn_back_sel
+    21300056: back_open
+    21300058: 10x10
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: 1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: bg_illust
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 298
+        height: 250
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu_subbg
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 255
+        width: 785
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu_title
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 0
+        width: 397
+        height: 81
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu2
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 0
+        width: 275
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu3
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 70
+        width: 274
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu1_(3)duckmyung_sel
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 82
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu2_(4)gongchon_nor
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 140
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu1_(2)dongbaek_nor
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 144
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu3_(1)yongsan_sel
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 313
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu2_(2)daesul_sel
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 313
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu2_(4)gongchon_sel
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 313
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu3_(2)samchun_nor
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 375
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu2_(3)kwangui_sel
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 375
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu2_(5)sindong_nor
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 375
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu1_(1)namgang_sel
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 437
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu2_(2)daesul_nor
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 437
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu2_(3)kwangui_nor
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 437
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu1_(3)duckmyung_nor
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 499
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu2_(5)sindong_sel
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 499
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu2_(1)jangya_nor
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 499
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu2_(1)jangya_sel
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 561
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu1_(2)dongbaek_sel
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 561
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu3_(2)samchun_sel
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 561
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu3_(1)yongsan_nor
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 623
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu1_(1)namgang_nor
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 623
+        width: 295
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: menu1
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 623
+        width: 235
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: btn_back_nor
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 82
+        width: 55
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: btn_back_sel
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 202
+        width: 55
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: back_open
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 82
+        width: 20
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 10x10
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 116
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,26 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/PinchZoomandview.cs">
+    <Files>
+      <File FileName="Assets/Script/bestpractice/bestpractice.cs" Line="207" Column="1" />
+      <File FileName="Assets/Script/Mainpage/Mainpage.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/FirstScreenSizeSetting.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/bestwar/bestwar.cs" Line="1" Column="1" />
+      <File FileName="Assets/Plugins/Android/Editor/UnityWebViewPostprocessBuild.cs" Line="1" Column="1" />
+      <File FileName="Assets/Plugins/Android/AndroidManifest.xml" Line="1" Column="1" />
+      <File FileName="Assets/SampleWebView.cs" Line="1" Column="1" />
+      <File FileName="Assets/MPMP/Scripts/MPMP_API.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/PinchZoomandview.cs" Line="122" Column="34" />
+      <File FileName="../tower101_and/Assets/Script/StatusController.cs" Line="1" Column="1" />
+      <File FileName="Assets/MPMP/Scripts/GUI/MPMP_ugui_Element.cs" Line="1" Column="1" />
+      <File FileName="Assets/MPMP/Scripts/MPMP.cs" Line="1" Column="1" />
+      <File FileName="Assets/Plugins/WebViewObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/futurerice/futurerice.cs" Line="169" Column="94" />
+      <File FileName="Assets/Script/LetterSpacing.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

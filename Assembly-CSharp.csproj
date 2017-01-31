@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{4AFE1A17-A5CB-B1A0-869F-5F78CCA0985D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_5_1;UNITY_5_5;UNITY_5;UNITY_ANALYTICS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_GENERICS;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;UNITY_ANDROID;ENABLE_SUBSTANCE;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;ENABLE_VIDEO;ENABLE_VR;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;VLC_BACKEND</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\MPMP\Examples\Scripts\Rotater.cs" />
+     <Compile Include="Assets\MPMP\Scripts\GUI\MPMP_ugui_Element.cs" />
+     <Compile Include="Assets\MPMP\Scripts\GUI\MPMP_ugui_Host.cs" />
+     <Compile Include="Assets\MPMP\Scripts\MPMP.cs" />
+     <Compile Include="Assets\MPMP\Scripts\MPMPScaleFlip.cs" />
+     <Compile Include="Assets\MPMP\Scripts\MPMP_API.cs" />
+     <Compile Include="Assets\MPMP\Scripts\MPMP_APITest.cs" />
+     <Compile Include="Assets\MPMP\Scripts\MPMP_DelayQuit.cs" />
+     <Compile Include="Assets\MPMP\Scripts\MPMP_DllImport.cs" />
+     <Compile Include="Assets\MPMP\Scripts\MPMP_EditorPlayMode.cs" />
+     <Compile Include="Assets\MPMP\Scripts\MPMP_File.cs" />
+     <Compile Include="Assets\MPMP\Scripts\MPMP_LoadOnStart.cs" />
+     <Compile Include="Assets\MPMP\Scripts\MPMP_Utils.cs" />
+     <Compile Include="Assets\MPMP\Scripts\MPMP_VR_Setup.cs" />
+     <Compile Include="Assets\MPMP\Scripts\MPMP_VideoSynchronizer.cs" />
+     <Compile Include="Assets\SampleWebView.cs" />
+     <Compile Include="Assets\Script\FirstScreenSizeSetting.cs" />
+     <Compile Include="Assets\Script\LetterSpacing.cs" />
+     <Compile Include="Assets\Script\Mainpage\Mainpage.cs" />
+     <Compile Include="Assets\Script\PinchZoomandview.cs" />
+     <Compile Include="Assets\Script\bestpractice\bestpractice.cs" />
+     <Compile Include="Assets\Script\bestwar\bestwar.cs" />
+     <Compile Include="Assets\Script\futurerice\futurerice.cs" />
+     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPAction.cs" />
+     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPActionType.cs" />
+     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPInstance.cs" />
+     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPSpriteInfo.cs" />
+     <Compile Include="Assets\Simple Sprite Packer\Scripts\UITexturePacker.cs" />
+     <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\browse.xml" />
+     <None Include="Assets\MPMP\Examples\Materials\Resources\GammaCorrectionSurface.shader" />
+     <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\playlist_jstree.xml" />
+     <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\playlist.xml" />
+     <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\README.txt" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\vlm.xml" />
+     <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\playlist_jstree.xml" />
+     <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\vlm_cmd.xml" />
+     <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\browse.xml" />
+     <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\status.xml" />
+     <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\README.txt" />
+     <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\vlm.xml" />
+     <None Include="Assets\Simple Sprite Packer\Changelog.txt" />
+     <None Include="Assets\Simple Sprite Packer\readme.txt" />
+     <None Include="Assets\MPMP\Examples\Materials\Resources\UnlitAlphaMask.shader" />
+     <None Include="Assets\MPMP\Examples\Materials\Resources\GammaCorrectionUnlit.shader" />
+     <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\status.xml" />
+     <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\playlist.xml" />
+     <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\vlm_cmd.xml" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.PlaymodeTestsRunner">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.HoloLens">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.VR">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{06B14508-1FEC-588D-DADC-D59E2D13FC0B}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
