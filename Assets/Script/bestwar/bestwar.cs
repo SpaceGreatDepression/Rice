@@ -155,14 +155,8 @@ public class bestwar : MonoBehaviour {
 		sub4.transform.FindChild ("dim").gameObject.SetActive (true);
 		FirstScreenSizeSetting.Instance.ColorOnoff (sub4.transform.FindChild("dim").gameObject,0,0.75f,0.5f,"IT",this.gameObject);
 		FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,0),sub4.transform.FindChild ("wg").gameObject,0.2f,"IT",this.gameObject,null);
-		sub4.transform.FindChild ("wg").FindChild ("L").gameObject.SetActive (true);
-		sub4.transform.FindChild ("wg").FindChild ("R").gameObject.SetActive (true);
-		if (i == 0) {
-			sub4.transform.FindChild ("wg").FindChild ("L").gameObject.SetActive (false);
 
-		} else if (i == 13) {
-			sub4.transform.FindChild ("wg").FindChild ("R").gameObject.SetActive (false);
-		}
+
 
 		setname4 (status);
 	}
@@ -242,14 +236,6 @@ public class bestwar : MonoBehaviour {
 		sub.transform.FindChild ("dim").gameObject.SetActive (true);
 		FirstScreenSizeSetting.Instance.ColorOnoff (sub.transform.FindChild("dim").gameObject,0,0.75f,0.5f,"IT",this.gameObject);
 		FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,0),sub.transform.FindChild ("wg").gameObject,0.2f,"IT",this.gameObject,null);
-		sub.transform.FindChild ("wg").FindChild ("L").gameObject.SetActive (true);
-		sub.transform.FindChild ("wg").FindChild ("R").gameObject.SetActive (true);
-		if (i == 0) {
-			sub.transform.FindChild ("wg").FindChild ("L").gameObject.SetActive (false);
-
-		} else if (i == 9) {
-			sub.transform.FindChild ("wg").FindChild ("R").gameObject.SetActive (false);
-		}
 
 		setname (status);
 	}
@@ -430,11 +416,10 @@ public class bestwar : MonoBehaviour {
 		return Tempimage;
 	}
 	public void L(){
-		sub.transform.FindChild ("wg").FindChild ("L").gameObject.SetActive (true);
-		sub.transform.FindChild ("wg").FindChild ("R").gameObject.SetActive (true);
+
 		status--;
-		if (status <= 0) {
-			status = 0;
+		if (status < 0) {
+			status = 9;
 
 		}
 		setname (status);
@@ -449,12 +434,7 @@ public class bestwar : MonoBehaviour {
 			Tg.SetActive (true);
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(V.x,0),Tg,0.1f,"M2",this.gameObject,Tg);
 		}
-		if (status == 0) {
-			sub.transform.FindChild ("wg").FindChild ("L").gameObject.SetActive (false);
-		}
-		if (status == 9) {
-			sub.transform.FindChild ("wg").FindChild ("R").gameObject.SetActive (false);
-		}
+
 	}
 	void M2(object o){
 		GameObject O = (GameObject)o;
@@ -469,11 +449,10 @@ public class bestwar : MonoBehaviour {
 
 	}
 	public void R(){
-		sub.transform.FindChild ("wg").FindChild ("L").gameObject.SetActive (true);
-		sub.transform.FindChild ("wg").FindChild ("R").gameObject.SetActive (true);
+
 		status++;
-		if (status >= 9) {
-			status = 9;
+		if (status >=9) {
+			status = 0;
 		}
 		setname (status);
 		if (sub.transform.FindChild ("wg").FindChild("mask").GetChild(0).GetComponent<Image> ().sprite != tempsp [status]) {
@@ -484,21 +463,15 @@ public class bestwar : MonoBehaviour {
 			Tg.gameObject.SetActive (true);
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,0),Tg,0.1f,"M2",this.gameObject,Tg);
 		}
-		if (status == 0) {
-			sub.transform.FindChild ("wg").FindChild ("L").gameObject.SetActive (false);
-		}
-		if (status == 9) {
-			sub.transform.FindChild ("wg").FindChild ("R").gameObject.SetActive (false);
-		}
+
 
 
 	}
 	public void L4(){
-		sub4.transform.FindChild ("wg").FindChild ("L").gameObject.SetActive (true);
-		sub4.transform.FindChild ("wg").FindChild ("R").gameObject.SetActive (true);
+
 		status--;
-		if (status <= 0) {
-			status = 0;
+		if (status < 0) {
+			status = 13;
 
 		}
 		setname4 (status);
@@ -513,12 +486,7 @@ public class bestwar : MonoBehaviour {
 			Tg.SetActive (true);
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(V.x,0),Tg,0.1f,"M24",this.gameObject,Tg);
 		}
-		if (status == 0) {
-			sub4.transform.FindChild ("wg").FindChild ("L").gameObject.SetActive (false);
-		}
-		if (status == 13) {
-			sub4.transform.FindChild ("wg").FindChild ("R").gameObject.SetActive (false);
-		}
+
 	}
 	void M24(object o){
 		GameObject O = (GameObject)o;
@@ -533,11 +501,10 @@ public class bestwar : MonoBehaviour {
 
 	}
 	public void R4(){
-		sub4.transform.FindChild ("wg").FindChild ("L").gameObject.SetActive (true);
-		sub4.transform.FindChild ("wg").FindChild ("R").gameObject.SetActive (true);
+
 		status++;
-		if (status >= 13) {
-			status = 13;
+		if (status > 13) {
+			status = 0;
 		}
 		setname4 (status);
 		if (sub4.transform.FindChild ("wg").FindChild("mask").GetChild(0).GetComponent<Image> ().sprite != tempsp [status]) {
@@ -548,18 +515,14 @@ public class bestwar : MonoBehaviour {
 			Tg.gameObject.SetActive (true);
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,0),Tg,0.1f,"M24",this.gameObject,Tg);
 		}
-		if (status == 0) {
-			sub4.transform.FindChild ("wg").FindChild ("L").gameObject.SetActive (false);
-		}
-		if (status == 13) {
-			sub4.transform.FindChild ("wg").FindChild ("R").gameObject.SetActive (false);
-		}
+
 
 
 	}
 	public void back(){
 		Debug.Log (ES);
 		if (ES == Status.stage1) {
+			tempsp.Clear ();
 			ES = Status.stage0;
 			top.transform.FindChild ("back").GetComponent<Image> ().raycastTarget = false;
 			if (top.transform.FindChild ("Ts").GetComponent<Image> ().color.a != 0) {
@@ -587,6 +550,7 @@ public class bestwar : MonoBehaviour {
 	
 			playclose ();
 		} else if (ES == Status.stage1_1) {
+
 			ES = Status.stage1;
 			close ();
 		} else if (ES == Status.stage3) {
@@ -595,6 +559,7 @@ public class bestwar : MonoBehaviour {
 			FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("Ts3").gameObject, 1, 0, 0.75f, "C1", this.gameObject);
 			FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("mt").gameObject, 0, 1, 0.75f, "C1", this.gameObject);
 		} else if (ES == Status.stage4) {
+			tempsp.Clear ();
 			ES = Status.stage0;
 	
 			top.transform.FindChild ("back").GetComponent<Image> ().raycastTarget = false;
@@ -619,6 +584,7 @@ public class bestwar : MonoBehaviour {
 
 			}
 		} else if (ES == Status.stage4_1) {
+
 			ES = Status.stage4;
 			close4 ();
 		} else {
@@ -627,6 +593,7 @@ public class bestwar : MonoBehaviour {
 
 	}
 	void gohome(){
+		tempsp.Clear ();
 		ES = Status.stage0;
 		this.gameObject.SetActive (false);
 	}

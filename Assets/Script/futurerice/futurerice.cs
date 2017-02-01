@@ -164,6 +164,7 @@ public class futurerice : MonoBehaviour {
 	}
 	void M2(object o){
 		GameObject O = (GameObject)o;
+		sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().smooth = false;
 		sub.transform.FindChild ("mask").GetChild(0).GetComponent<Image> ().sprite = tempsp [status];
 		sub.transform.FindChild ("mask").GetChild (0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
 		sub.transform.FindChild ("mask").GetChild (0).transform.localScale = new Vector3 (1, 1, 1);

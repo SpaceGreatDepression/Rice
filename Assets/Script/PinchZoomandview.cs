@@ -11,7 +11,7 @@ public class PinchZoomandview : MonoBehaviour
 	public RectTransform mask;
 
 	void Start(){
-		
+
 		PinchOn (this.transform);
 	}
 	Vector2 defultsize;
@@ -37,22 +37,57 @@ public class PinchZoomandview : MonoBehaviour
 	void pivotset(){
 		if (T != null) {
 			vel = FirstScreenSizeSetting.Instance.InputMousePosition ();
-			//defultpos = T.GetComponent<RectTransform> ().anchoredPosition;
-			defultpos = Vector2.zero;
+			//Debug.Log("center : " + vel + " , po0 : " + FirstScreenSizeSetting.Instance.InputMousePosition (0) + " , po1"+FirstScreenSizeSetting.Instance.InputMousePosition (1));
+			//Debug.Log (FirstScreenSizeSetting.Instance.InputMousePosition (0));
+
+			defultpos = T.GetComponent<RectTransform> ().anchoredPosition;
+
+			//	defultpos = Vector2.zero;
 			defultsize = T.GetComponent<RectTransform> ().sizeDelta;
-			defultpos -= new Vector2 (0,60f);
+			//	defultpos -= new Vector2 (0,60f);
 			defultscale = T.localScale;
 			maxsizes = new Vector2 (defultscale.x * defultsize.x, defultscale.y * defultsize.y);
-			T.GetComponent<RectTransform> ().pivot = new Vector2 (1f-((vel.x - defultpos.x) / maxsizes.x)-0.5f, 1f-((vel.y - defultpos.y) / maxsizes.y)-0.5f);
+			//Debug.Log ("dp : " + defultpos + " , ds : " + defultscale);
+			T.GetComponent<RectTransform> ().pivot = new Vector2 (((vel.x - defultpos.x) / maxsizes.x)+0.5f, ((vel.y - defultpos.y) / maxsizes.y)+0.5f);
+
 			T.GetComponent<RectTransform> ().anchoredPosition = defultpos;
-			T.GetComponent<RectTransform> ().anchoredPosition -= new Vector2 ((0.5f-T.GetComponent<RectTransform> ().pivot.x*defultsize.x)+defultsize.x/2f,(-T.GetComponent<RectTransform> ().pivot.y*defultsize.y)+defultsize.y/2f-60f);
+			T.GetComponent<RectTransform> ().anchoredPosition -= new Vector2 (((0.5f-T.GetComponent<RectTransform> ().pivot.x)*defultsize.x)*defultscale.x,((0.5f-T.GetComponent<RectTransform> ().pivot.y)*defultsize.y)*defultscale.y);
+			//Debug.Log ("dp : " + T.GetComponent<RectTransform> ().anchoredPosition + " , dpi: " + T.GetComponent<RectTransform> ().pivot);
+		}
+	}
+	void pivotreset(){
+		if (T != null) {
+			if (T.GetComponent<RectTransform> ().pivot.x != 0.5f || T.GetComponent<RectTransform> ().pivot.y != 0.5f) {
+
+
+				vel = FirstScreenSizeSetting.Instance.InputMousePosition ();
+				defultpos = T.GetComponent<RectTransform> ().anchoredPosition;
+				//	defultpos = Vector2.zero;
+				defultsize = T.GetComponent<RectTransform> ().sizeDelta;
+				//defultpos -= new Vector2 (0,60f);
+				defultscale = T.localScale;
+				maxsizes = new Vector2 (defultscale.x * defultsize.x, defultscale.y * defultsize.y);
+				Vector2 dpi = T.GetComponent<RectTransform> ().pivot;
+				T.GetComponent<RectTransform> ().pivot = new Vector2 (0.5f, 0.5f);
+				Debug.Log (T.GetComponent<RectTransform> ().anchoredPosition+" pi : " + dpi + " ds : " + T.transform.localScale);
+				T.GetComponent<RectTransform> ().anchoredPosition = defultpos;
+				if(dpi.x != 0.5f||dpi.y != 0.5f) {
+					T.GetComponent<RectTransform> ().anchoredPosition += new Vector2 ((0.5f-dpi.x) * defultsize.x * defultscale.x, (0.5f-dpi.y ) * defultsize.y * defultscale.y);
+				}else
+					if (dpi.x != 0.5f) {
+						T.GetComponent<RectTransform> ().anchoredPosition += new Vector2 ((0.5f-dpi.x) * defultsize.x * defultscale.x, 0);
+					} else if (dpi.y != 0.5f) {
+						T.GetComponent<RectTransform> ().anchoredPosition += new Vector2 (0, (0.5f-dpi.y ) * defultsize.y * defultscale.y);
+					}
+				Debug.Log (T.GetComponent<RectTransform> ().anchoredPosition);
+			}
 		}
 	}
 	bool fist = true;
 	void Update()
 	{
 		//if (Pinchboo) {
-			//	Debug.Log ("Input.touchCount : " + Input.touchCount);
+		//	Debug.Log ("Input.touchCount : " + Input.touchCount);
 		//pivotset ();
 		if (Input.touchCount >= 2) {
 			if (fist) {
@@ -72,7 +107,7 @@ public class PinchZoomandview : MonoBehaviour
 
 
 			float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
-			 
+
 
 			//Debug.Log ("deltaMagnitudeDiff * perspectiveZoomSpeed : " + deltaMagnitudeDiff * perspectiveZoomSpeed);
 			float result = (deltaMagnitudeDiff * perspectiveZoomSpeed) * -1f;
@@ -85,29 +120,33 @@ public class PinchZoomandview : MonoBehaviour
 				}
 			}
 			size = true;
-			 
+
 
 		} else if (Imageclick) 
 		{
-			T.GetComponent<RectTransform> ().pivot = new Vector2 (0.5f,0.5f);
+			pivotreset ();
 			fist = true;
 			if (size) {
 				vl.Clear ();
 				size = false;
-	
-	
-					#if UNITY_EDITOR
-					vel = FirstScreenSizeSetting.Instance.InputMousePosition ();
-					#else
+
+
+				#if UNITY_EDITOR
+				vel = FirstScreenSizeSetting.Instance.InputMousePosition ();
+				#else
+				if (Input.touchCount >= 2) {
 				if (Input.GetTouch (0).fingerId == touchZero.fingerId) {
 				vel = FirstScreenSizeSetting.Instance.InputMousePosition (0);
 				} else {
 				vel = FirstScreenSizeSetting.Instance.InputMousePosition (touchOne);
 				}
+				}else{
+				vel = FirstScreenSizeSetting.Instance.InputMousePosition ();
+				}
 				#endif
 
 			} else {
-				
+
 				count++;
 				saver = target.anchoredPosition;
 				target.anchoredPosition += FirstScreenSizeSetting.Instance.InputMousePosition () - vel;
@@ -119,7 +158,8 @@ public class PinchZoomandview : MonoBehaviour
 			}
 
 		} else if(smooth) {
-			T.GetComponent<RectTransform> ().pivot = new Vector2 (0.5f,0.5f);
+
+
 			fist = true;
 			target.anchoredPosition = Vector2.SmoothDamp (target.anchoredPosition, gotop, ref velo, 0.1f,9999f,Time.deltaTime);
 
@@ -131,11 +171,11 @@ public class PinchZoomandview : MonoBehaviour
 	bool size = false;
 	int count = 0;
 	bool Imageclick = false;
-	bool smooth = false;
+	public bool smooth = false;
 	Vector2 vel;
 	public void ImageDown(){
 		size = true;
-			vel = FirstScreenSizeSetting.Instance.InputMousePosition ();
+		vel = FirstScreenSizeSetting.Instance.InputMousePosition ();
 
 		//pinchoff ();
 		Imageclick = true;
@@ -149,10 +189,10 @@ public class PinchZoomandview : MonoBehaviour
 		Imageclick = false;
 		checkout ();
 		#else
-			if (Input.touchCount <= 1) {
-				Imageclick = false;
-				checkout ();
-			}
+		//	if (Input.touchCount <= 1) {
+		Imageclick = false;
+		checkout ();
+		//	}
 		#endif
 
 	}
@@ -162,6 +202,7 @@ public class PinchZoomandview : MonoBehaviour
 		return new Vector2 (x,y);
 	}
 	void checkout(){
+		pivotreset ();
 		Debug.Log ("checkout");
 		Vector2 v = target.GetComponent<RectTransform> ().anchoredPosition;
 		Vector2 M = maxsize ();
@@ -182,26 +223,27 @@ public class PinchZoomandview : MonoBehaviour
 				y = -M.y;
 			}  
 			velo = Vector2.zero;
-	
-		
+
+
 
 			gotop = new Vector2 (x, y);
-		} else {
+		}
+		/*else {
 			//smooth = true;
 			Debug.Log("saver : " + saver);
 			Debug.Log("target.anchoredPosition : " + target.anchoredPosition);
 			Vector2 save = (saver - target.anchoredPosition)*-1f;
 			save = new Vector2 (save.x *5,save.y*5);
-//			Vector2 save = new Vector2(0,0);
-//			for (int i = 0; i < vl.Count; i++) {
-//				save += vl [i];
-//			}
-//			Debug.Log (save);
+			//			Vector2 save = new Vector2(0,0);
+			//			for (int i = 0; i < vl.Count; i++) {
+			//				save += vl [i];
+			//			}
+			//			Debug.Log (save);
 			Debug.Log (save);
 			save +=target.anchoredPosition ;
-			smooth = true;
-			if (save.x > M.x || save.x < -M.x || save.y > M.y || save.y < -M.y) {
 
+			if (save.x > M.x || save.x < -M.x || save.y > M.y || save.y < -M.y) {
+				smooth = true;
 				float x = save.x;
 				if (save.x > M.x) {
 					x = M.x;
@@ -224,8 +266,10 @@ public class PinchZoomandview : MonoBehaviour
 				gotop = save;
 			} 
 
+			gotop = save;
 		
 		}
+	*/
 	}
 
 	Vector2 gotop;

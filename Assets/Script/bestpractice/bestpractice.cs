@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 public class bestpractice : MonoBehaviour {
-	public GameObject Bg,top,mid,sub;
+	public GameObject Bg,top,mid,sub,go1,go2,go3;
 	// Use this for initialization
 	public float Midmenusizey = 150f;
 	public float Midsubsizey = 100f;
@@ -123,6 +123,7 @@ public class bestpractice : MonoBehaviour {
 			break;
 		case "01_02_school04":
 		case "01_02_school03":
+		case "01_01_school03":
 			count = 15;
 			break;
 		case "01_03_school02":
@@ -130,7 +131,6 @@ public class bestpractice : MonoBehaviour {
 		case "01_01_school01":
 		case "01_02_school01":
 		case "01_02_school02":			
-		case "01_01_school03":
 		case "01_02_school05":
 			count = 16;
 			break;
@@ -261,6 +261,7 @@ public class bestpractice : MonoBehaviour {
 	}
 	void M2(object o){
 		GameObject O = (GameObject)o;
+		sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().smooth = false;
 		sub.transform.FindChild ("mask").GetChild(0).GetComponent<Image> ().sprite = tempsp [status];
 		sub.transform.FindChild ("mask").GetChild (0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
 		sub.transform.FindChild ("mask").GetChild (0).transform.localScale = new Vector3 (1, 1, 1);
