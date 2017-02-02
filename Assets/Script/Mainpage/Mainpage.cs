@@ -36,6 +36,8 @@ public class Mainpage : MonoBehaviour {
 		bp.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (V.x,0);
 		bw.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (V.x,0);
 		br.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (V.x,0);
+		bot.transform.localScale = new Vector3 (0.7f,0.7f,1f);
+		bot.transform.localScale -=  new Vector3 (((4f/3f)-(Ori.y/Ori.x))*(0.3f/((16f/9f)-(4f/3f))),((4f/3f)-(Ori.y/Ori.x))*(0.3f/((16f/9f)-(4f/3f))),0);
 		FirstScreenSizeSetting.Instance.kipbackevent (
 			close);
 	}
@@ -46,30 +48,43 @@ public class Mainpage : MonoBehaviour {
 		Awake2 ();
 	}
 	public void stage1(){
+		FirstScreenSizeSetting.Instance.dad.Dimon ();
 		bot.SetActive (true);
 		mid.transform.GetChild (0).GetComponent<Image> ().raycastTarget = false;
 		mid.transform.GetChild (1).GetComponent<Image> ().raycastTarget = false;
 		mid.transform.GetChild (2).GetComponent<Image> ().raycastTarget = false;
 		bp.SetActive (true);
 		FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,0),bp,0.1f,"M1",this.gameObject,null);
+		StopCoroutine ("popupon");
+		popup.GetComponent<Image> ().color = new Color (1,1,1,0);
+		modeq = false;
 	}
 	public void stage2(){
+		FirstScreenSizeSetting.Instance.dad.Dimon ();
 		bot.SetActive (true);
 		mid.transform.GetChild (0).GetComponent<Image> ().raycastTarget = false;
 		mid.transform.GetChild (1).GetComponent<Image> ().raycastTarget = false;
 		mid.transform.GetChild (2).GetComponent<Image> ().raycastTarget = false;
 		bw.SetActive (true);
 		FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,0),bw,0.1f,"M2",this.gameObject,null);
+		StopCoroutine ("popupon");
+		popup.GetComponent<Image> ().color = new Color (1,1,1,0);
+		modeq = false;
 	}
 	public void stage3(){
+		FirstScreenSizeSetting.Instance.dad.Dimon ();
 		bot.SetActive (true);
 		mid.transform.GetChild (0).GetComponent<Image> ().raycastTarget = false;
 		mid.transform.GetChild (1).GetComponent<Image> ().raycastTarget = false;
 		mid.transform.GetChild (2).GetComponent<Image> ().raycastTarget = false;
 		br.SetActive (true);
 		FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,0),br,0.1f,"M3",this.gameObject,null);
+		StopCoroutine ("popupon");
+		popup.GetComponent<Image> ().color = new Color (1,1,1,0);
+		modeq = false;
 	}
 	void M1(){
+		FirstScreenSizeSetting.Instance.dad.Dimoff ();
 		mid.transform.GetChild (0).GetComponent<Image> ().raycastTarget = true;
 		mid.transform.GetChild (1).GetComponent<Image> ().raycastTarget = true;
 		mid.transform.GetChild (2).GetComponent<Image> ().raycastTarget = true;
@@ -79,6 +94,7 @@ public class Mainpage : MonoBehaviour {
 
 	}
 	void M2(){
+		FirstScreenSizeSetting.Instance.dad.Dimoff ();
 		mid.transform.GetChild (0).GetComponent<Image> ().raycastTarget = true;
 		mid.transform.GetChild (1).GetComponent<Image> ().raycastTarget = true;
 		mid.transform.GetChild (2).GetComponent<Image> ().raycastTarget = true;
@@ -86,6 +102,7 @@ public class Mainpage : MonoBehaviour {
 			transform.parent.FindChild ("BEST WAR").GetComponent<bestwar> ().back);
 	}
 	void M3(){
+		FirstScreenSizeSetting.Instance.dad.Dimoff ();
 		mid.transform.GetChild (0).GetComponent<Image> ().raycastTarget = true;
 		mid.transform.GetChild (1).GetComponent<Image> ().raycastTarget = true;
 		mid.transform.GetChild (2).GetComponent<Image> ().raycastTarget = true;

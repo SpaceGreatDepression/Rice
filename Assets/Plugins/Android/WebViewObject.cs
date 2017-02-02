@@ -212,6 +212,44 @@ public class WebViewObject : MonoBehaviour
         webView.Call("Init", name, transparent);
 #endif
     }
+	IEnumerator startcru(){
+	Debug.Log ("rororo");
+	while(true){
+			Debug.Log ("rororo");
+	volup ();
+			yield return new WaitForSeconds (1f);
+	volup ();
+	yield return new WaitForSeconds (1f);
+	volup ();
+	yield return new WaitForSeconds (1f);
+	volup ();
+	yield return new WaitForSeconds (1f);
+	volup ();
+	yield return new WaitForSeconds (1f);
+	Debug.Log ("rororo");
+	voldown ();
+	yield return new WaitForSeconds (1f);
+	voldown ();
+	yield return new WaitForSeconds (1f);
+	voldown ();
+	yield return new WaitForSeconds (1f);
+	voldown ();
+	yield return new WaitForSeconds (1f);
+	voldown ();
+	yield return new WaitForSeconds (1f);
+
+	}
+	}
+//	void Start(){
+//		if (name == "adder") {
+//	#if UNITY_EDITOR 
+//	#elif UNITY_ANDROID
+//	webView = new AndroidJavaObject("net.gree.unitywebview.CWebViewPlugin");
+//	StartCoroutine("startcru");
+//
+//	#endif
+//	}
+//	}
 
     protected virtual void OnDestroy()
     {
@@ -361,7 +399,20 @@ public class WebViewObject : MonoBehaviour
         return webView.Get<bool>("canGoBack");
 #endif
     }
+	public void volup(){
 
+	#if UNITY_EDITOR 
+	#elif UNITY_ANDROID
+	webView.Call("Volup");
+	#endif
+	}
+	public void voldown(){
+
+	#if UNITY_EDITOR 
+	#elif UNITY_ANDROID
+	webView.Call("Voldown");
+	#endif
+	}
     public bool CanGoForward()
     {
 #if UNITY_WEBPLAYER

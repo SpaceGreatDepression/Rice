@@ -476,6 +476,7 @@ public class FirstScreenSizeSetting : MonoBehaviour {
 
 				if (EventAction != null) {
 				if (!LD.dim.activeSelf) {
+					if(!dad.dim.activeSelf)
 					EventAction ();
 				}
 				}

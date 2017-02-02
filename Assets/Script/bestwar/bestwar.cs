@@ -32,7 +32,7 @@ public class bestwar : MonoBehaviour {
 		sub2.transform.FindChild("wg").FindChild("RawImage").GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x-14f,V.x*(683f/1024f)-14);
 		sub2.transform.FindChild ("wg").GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,-(V.y/2f)-(sub.transform.FindChild("wg").GetComponent<RectTransform> ().sizeDelta.y/2f)-24.5f);
 		sub2.transform.FindChild ("wg").FindChild ("player").transform.localScale = new Vector3 ((V.x-16f)/786f,(V.x-16f)/786f,1);
-
+		sub2.transform.FindChild("dim").GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,V.y-120f);
 		sub4.GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,V.y-120f);;
 		sub4.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (V.x,-60f);
 
@@ -95,13 +95,14 @@ public class bestwar : MonoBehaviour {
 
 	List<Sprite> tempsp =new List<Sprite>();
 	void C1(){
-		
+		FirstScreenSizeSetting.Instance.dad.Dimoff ();
 	}
 	enum Status{
 		stage1,stage2,stage3,stage4,stage1_1,stage0,stage4_1
 	}
 	Status ES = Status.stage0;
 	public void stage1(){
+		FirstScreenSizeSetting.Instance.dad.Dimon ();
 		StartCoroutine ("stage1lod");
 	}
 	IEnumerator stage1lod(){
@@ -131,6 +132,7 @@ public class bestwar : MonoBehaviour {
 	}
 	bool dataload = true;
 	public void stage2(){
+		FirstScreenSizeSetting.Instance.dad.Dimon ();
 		FirstScreenSizeSetting.Instance.LD.StartLoding ();
 
 		sub2.SetActive (true);
@@ -147,12 +149,15 @@ public class bestwar : MonoBehaviour {
 	}
 
 	public void stage3(){
+		FirstScreenSizeSetting.Instance.dad.Dimon ();
 		Webview.GetComponent<SampleWebView> ().View ("https://www.youtube.com/channel/UCGUuc8iDYP00rBMnSKxaaXQ");
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("Ts3").gameObject,0,1,0.75f,"C1",this.gameObject);
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild("mt").gameObject,1,0,0.75f,"C1",this.gameObject);
 		ES = Status.stage3;
+
 	}
 	public void stage4(){
+		FirstScreenSizeSetting.Instance.dad.Dimon ();
 		StartCoroutine ("stage4lod");
 	}
 	IEnumerator stage4lod(){
@@ -232,6 +237,7 @@ public class bestwar : MonoBehaviour {
 				.GetComponent<Image>().color.a,0,0.5f,"IT2",this.gameObject);
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,wgp),sub2.transform.FindChild ("wg").gameObject,0.2f,"PC",this.gameObject,null);
 		}
+		sub2.transform.FindChild ("wg").GetComponent<monoflow.MPMP_ugui_Element> ().player.Stop ();
 	}
 	void PC(){
 		sub2.SetActive (false);
@@ -597,6 +603,7 @@ public class bestwar : MonoBehaviour {
 	}
 	public void back(){
 		Debug.Log (ES);
+		FirstScreenSizeSetting.Instance.dad.Dimon ();
 		if (ES == Status.stage1) {
 			tempsp.Clear ();
 			FirstScreenSizeSetting.Instance.memory ();
@@ -624,10 +631,10 @@ public class bestwar : MonoBehaviour {
 			}
 
 		} else if (ES == Status.stage2) {
-	
+			FirstScreenSizeSetting.Instance.dad.Dimoff ();
 			playclose ();
 		} else if (ES == Status.stage1_1) {
-
+			FirstScreenSizeSetting.Instance.dad.Dimoff ();
 			ES = Status.stage1;
 			close ();
 		} else if (ES == Status.stage3) {
@@ -662,12 +669,12 @@ public class bestwar : MonoBehaviour {
 
 			}
 		} else if (ES == Status.stage4_1) {
-
+			FirstScreenSizeSetting.Instance.dad.Dimoff ();
 			ES = Status.stage4;
 			close4 ();
 		} else {
 			StopAllCoroutines ();
-			FirstScreenSizeSetting.Instance.dad.Dimon ();
+	
 			transform.parent.FindChild ("bot").gameObject.SetActive (false);
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2 (V.x, 0), this.gameObject, 0.1f, "gohome", this.gameObject, null);
 		}
@@ -682,6 +689,7 @@ public class bestwar : MonoBehaviour {
 		FirstScreenSizeSetting.Instance.dad.Dimoff ();
 	}
 	void M3(){
+		FirstScreenSizeSetting.Instance.dad.Dimoff ();
 		top.transform.FindChild ("back").GetComponent<Image> ().raycastTarget = true;
 		for (int i = 0; i < Tlist.Count; i++) {
 			Destroy (Tlist[i]);

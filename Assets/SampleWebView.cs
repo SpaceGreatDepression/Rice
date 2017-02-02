@@ -25,11 +25,17 @@ public class SampleWebView : MonoBehaviour
 {
     public string Url;
 	public string status;
-    WebViewObject webViewObject;
+	WebViewObject webViewObject;
+
+
+	delegate void BackEvent();
 	void comp(){
 		Debug.Log ("lodeon");
 	}
 	public void View(string url){
+		saver = FirstScreenSizeSetting.Instance.EventAction;
+
+		FirstScreenSizeSetting.Instance.kipbackevent (backbutton);
 		Url = url;
 		StartCoroutine ("Starts");
 	}
@@ -41,6 +47,10 @@ public class SampleWebView : MonoBehaviour
 	Vector2 V; 
     IEnumerator Starts()
     {
+
+
+
+
 		V = FirstScreenSizeSetting.Instance.Origin;
         webViewObject = (new GameObject("WebViewObject")).AddComponent<WebViewObject>();
 
@@ -139,6 +149,16 @@ public class SampleWebView : MonoBehaviour
 		}
         yield break;
     }
+	System.Action saver;
+	void backbutton(){
+		if (webViewObject.CanGoBack ()) {
+			webViewObject.GoBack ();
+		} else {
+			FirstScreenSizeSetting.Instance.EventAction = saver;
+			FirstScreenSizeSetting.Instance.EventAction ();
+	
+		}
+	}
 	float vv=0;
 #if !UNITY_WEBPLAYER
 //    void OnGUI()
@@ -170,6 +190,11 @@ public class SampleWebView : MonoBehaviour
 			yield return new WaitForFixedUpdate ();
 		}
 		webViewObject.SetVisibility (false);
+		FirstScreenSizeSetting.Instance.dad.Dimoff ();
 		Destroy (webViewObject.gameObject);
+	}
+
+	public void volup(){
+		
 	}
 }

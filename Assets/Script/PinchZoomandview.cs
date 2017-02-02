@@ -156,6 +156,33 @@ public class PinchZoomandview : MonoBehaviour
 				//}
 				vel = FirstScreenSizeSetting.Instance.InputMousePosition ();
 			}
+			pivotreset ();
+		//	Debug.Log ("checkout");
+			Vector2 v = target.GetComponent<RectTransform> ().anchoredPosition;
+			Vector2 M = maxsize ();
+		//	Debug.Log ("maxsize : " + M);
+			//smooth = false;
+			if (v.x > M.x || v.x < -M.x || v.y > M.y || v.y < -M.y) {
+				smooth = true;
+				float x = v.x;
+				if (v.x > M.x) {
+					x = M.x;
+				} else if (v.x < -M.x) {
+					x = -M.x;
+				}
+				float y = v.y;
+				if (v.y > M.y) {
+					y = M.y;
+				} else if (v.y < -M.y) {
+					y = -M.y;
+				}  
+				velo = Vector2.zero;
+
+
+
+				gotop = new Vector2 (x, y);
+					GetComponent<RectTransform> ().anchoredPosition = gotop;
+			}
 
 		} else if(smooth) {
 
@@ -174,11 +201,13 @@ public class PinchZoomandview : MonoBehaviour
 	public bool smooth = false;
 	Vector2 vel;
 	public void ImageDown(){
-		size = true;
-		vel = FirstScreenSizeSetting.Instance.InputMousePosition ();
+		if (transform.localScale.x != 1 && transform.localScale.y != 1) {
+			size = true;
+			vel = FirstScreenSizeSetting.Instance.InputMousePosition ();
 
-		//pinchoff ();
-		Imageclick = true;
+			//pinchoff ();
+			Imageclick = true;
+		}
 	}
 
 
@@ -227,7 +256,9 @@ public class PinchZoomandview : MonoBehaviour
 
 
 			gotop = new Vector2 (x, y);
+		//	GetComponent<RectTransform> ().anchoredPosition = gotop;
 		}
+
 		/*else {
 			//smooth = true;
 			Debug.Log("saver : " + saver);

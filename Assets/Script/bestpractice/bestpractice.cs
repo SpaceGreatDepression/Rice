@@ -165,6 +165,7 @@ public class bestpractice : MonoBehaviour {
 	List<Sprite> tempsp =new List<Sprite>();
 	string cha;
 	public void stringclick(string s){
+		FirstScreenSizeSetting.Instance.dad.Dimon ();
 		StartCoroutine ("datalod",s);
 		/*
 		subuse = true;
@@ -295,15 +296,17 @@ public class bestpractice : MonoBehaviour {
 		yield return new WaitForSeconds (0.1f);
 
 		status = 0;
-
+		sub.transform.FindChild ("mask").GetChild (0).GetComponent<RectTransform> ().pivot = new Vector2 (0.5f,0.5f);
 		sub.transform.FindChild ("mask").GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,V.y-120f);
 
 		sub.transform.FindChild ("mask").GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
+		sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().smooth = false;
 		sub.transform.FindChild ("mask").GetChild(0).GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,1818f/1440f*V.x);
 
 		sub.transform.FindChild ("mask").GetChild(0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
-
+		sub.transform.FindChild ("mask").GetChild (0).transform.localScale = new Vector3 (1,1,1);
 		sub.transform.FindChild ("mask").GetChild(0).GetComponent<Image> ().sprite = tempsp [0];
+
 		sub.transform.FindChild ("mask").gameObject.SetActive (true);
 		cha = ch [4].ToString ()+"_"+ch[13].ToString();
 		top.transform.FindChild ("st").FindChild (cha).GetComponent<Image> ().color = new Color (1,1,1,0);
@@ -317,6 +320,8 @@ public class bestpractice : MonoBehaviour {
 
 	}
 	void M1(){
+		sub.transform.FindChild ("mask").GetChild (0).GetComponent<Image> ().raycastTarget = true;
+		FirstScreenSizeSetting.Instance.dad.Dimoff ();
 //		for (int i = 2; i < count; i++) {
 //			if (i >= 10) {
 //				tempsp.Add (
@@ -400,6 +405,7 @@ public class bestpractice : MonoBehaviour {
 
 	public void back(){
 		if (subuse) {
+			FirstScreenSizeSetting.Instance.dad.Dimon ();
 			subuse = false;
 			top.transform.FindChild ("back").GetComponent<Image> ().raycastTarget = false;
 			if (top.transform.FindChild ("Ts").GetComponent<Image> ().color.a != 0) {
@@ -419,6 +425,7 @@ public class bestpractice : MonoBehaviour {
 			}
 			sub.transform.FindChild ("L").gameObject.SetActive (false);
 			sub.transform.FindChild ("R").gameObject.SetActive (true);
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<Image> ().raycastTarget = false;
 		} else {
 			StopAllCoroutines ();
 			go1.GetComponent<RectTransform> ().anchoredPosition = new Vector2(0,go1.GetComponent<RectTransform> ().sizeDelta.y);
@@ -446,6 +453,7 @@ public class bestpractice : MonoBehaviour {
 		FirstScreenSizeSetting.Instance.dad.Dimoff ();
 	}
 	void M3(){
+		FirstScreenSizeSetting.Instance.dad.Dimoff ();
 		top.transform.FindChild ("back").GetComponent<Image> ().raycastTarget = true;
 		for (int i = 0; i < Tlist.Count; i++) {
 			Destroy (Tlist[i]);

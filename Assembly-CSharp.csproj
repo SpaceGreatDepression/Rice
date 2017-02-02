@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AndroidManager.cs" />
      <Compile Include="Assets\MPMP\Examples\Scripts\Rotater.cs" />
      <Compile Include="Assets\MPMP\Scripts\GUI\MPMP_ugui_Element.cs" />
      <Compile Include="Assets\MPMP\Scripts\GUI\MPMP_ugui_Host.cs" />
@@ -67,6 +68,7 @@
      <Compile Include="Assets\Script\Loding\Loding.cs" />
      <Compile Include="Assets\Script\Mainpage\Mainpage.cs" />
      <Compile Include="Assets\Script\PinchZoomandview.cs" />
+     <Compile Include="Assets\Script\adder.cs" />
      <Compile Include="Assets\Script\bestpractice\bestpractice.cs" />
      <Compile Include="Assets\Script\bestwar\bestwar.cs" />
      <Compile Include="Assets\Script\dimanddim\dimanddim.cs" />

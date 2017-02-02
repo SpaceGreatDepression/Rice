@@ -41,6 +41,7 @@ public class futurerice : MonoBehaviour {
 		statusI = 2;
 	}
 	public void stringclick(){
+		FirstScreenSizeSetting.Instance.dad.Dimon ();
 		StartCoroutine ("datalod");
 
 	}
@@ -68,13 +69,14 @@ public class futurerice : MonoBehaviour {
 		}
 		yield return new WaitForSeconds (0.1f);
 		status = 0;
-
+		sub.transform.FindChild ("mask").GetChild (0).GetComponent<RectTransform> ().pivot = new Vector2 (0.5f,0.5f);
 		sub.transform.FindChild ("mask").GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,V.y-120f);
 
 		sub.transform.FindChild ("mask").GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
 		sub.transform.FindChild ("mask").GetChild(0).GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,1818f/1440f*V.x);
-
+		sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().smooth = false;
 		sub.transform.FindChild ("mask").GetChild(0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
+		sub.transform.FindChild ("mask").GetChild (0).transform.localScale = new Vector3 (1,1,1);
 
 		sub.transform.FindChild ("mask").GetChild(0).GetComponent<Image> ().sprite = tempsp [0];
 		sub.transform.FindChild ("mask").gameObject.SetActive (true);
@@ -106,6 +108,8 @@ public class futurerice : MonoBehaviour {
 
 	}
 	void M1(){
+		FirstScreenSizeSetting.Instance.dad.Dimoff ();
+		sub.transform.FindChild ("mask").GetChild (0).GetComponent<Image> ().raycastTarget = true;
 //		for (int i = 2; i < count; i++) {
 //			if (i >= 10) {
 //				tempsp.Add (
@@ -188,6 +192,7 @@ public class futurerice : MonoBehaviour {
 	}
 	int statusI = 0;
 	public void back(){
+		FirstScreenSizeSetting.Instance.dad.Dimon ();
 		if (statusI == 1) {
 			statusI = 0;
 			top.transform.FindChild ("back").GetComponent<Image> ().raycastTarget = false;
@@ -204,6 +209,7 @@ public class futurerice : MonoBehaviour {
 				FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2 (V.x, sub.GetComponent<RectTransform> ().anchoredPosition.y), sub, 0.05f, "M3", this.gameObject, null);
 
 			}
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<Image> ().raycastTarget = false;
 			sub.transform.FindChild ("L").gameObject.SetActive (false);
 			sub.transform.FindChild ("R").gameObject.SetActive (true);
 		} else if (statusI == 2) {
@@ -214,7 +220,7 @@ public class futurerice : MonoBehaviour {
 		}else if(statusI == 0){
 			StopAllCoroutines ();
 			transform.parent.FindChild ("bot").gameObject.SetActive (false);
-			FirstScreenSizeSetting.Instance.dad.Dimon ();
+		
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2 (V.x, 0), this.gameObject, 0.1f, "gohome", this.gameObject, null);
 		}
 	}
@@ -226,6 +232,7 @@ public class futurerice : MonoBehaviour {
 		FirstScreenSizeSetting.Instance.dad.Dimoff ();
 	}
 	void M3(){
+		FirstScreenSizeSetting.Instance.dad.Dimoff ();
 		top.transform.FindChild ("back").GetComponent<Image> ().raycastTarget = true;
 		for (int i = 0; i < Tlist.Count; i++) {
 			Destroy (Tlist[i]);
