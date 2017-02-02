@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 543544028874a4bdfb5b8deedc62095b
-timeCreated: 1485332069
+timeCreated: 1485935628
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -12,6 +12,9 @@ TextureImporter:
     21300010: btn01_sel
     21300012: btn02_nor
     21300014: main_bg(720x960)
+    21300016: title
+    21300018: logo
+    21300020: 10x10
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -94,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: main_bg(800x1280)
+      name: title
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 640
-        height: 1024
+        width: 1024
+        height: 209
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -110,8 +113,8 @@ TextureImporter:
       name: btn03_nor
       rect:
         serializedVersion: 2
-        x: 641
-        y: 0
+        x: 0
+        y: 210
         width: 433
         height: 188
       alignment: 9
@@ -123,8 +126,8 @@ TextureImporter:
       name: btn03_sel
       rect:
         serializedVersion: 2
-        x: 1075
-        y: 0
+        x: 434
+        y: 210
         width: 433
         height: 188
       alignment: 9
@@ -136,21 +139,8 @@ TextureImporter:
       name: btn02_sel
       rect:
         serializedVersion: 2
-        x: 1509
-        y: 0
-        width: 433
-        height: 188
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: btn01_sel
-      rect:
-        serializedVersion: 2
-        x: 641
-        y: 189
+        x: 0
+        y: 399
         width: 433
         height: 188
       alignment: 9
@@ -162,8 +152,8 @@ TextureImporter:
       name: btn02_nor
       rect:
         serializedVersion: 2
-        x: 1075
-        y: 189
+        x: 434
+        y: 399
         width: 433
         height: 188
       alignment: 9
@@ -175,10 +165,49 @@ TextureImporter:
       name: btn01_nor
       rect:
         serializedVersion: 2
-        x: 1509
-        y: 189
+        x: 0
+        y: 588
         width: 433
         height: 188
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: btn01_sel
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 777
+        width: 433
+        height: 188
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: logo
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 588
+        width: 208
+        height: 139
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 10x10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 967
+        width: 8
+        height: 8
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

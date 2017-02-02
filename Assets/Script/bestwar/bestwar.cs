@@ -46,7 +46,7 @@ public class bestwar : MonoBehaviour {
 
 
 	}
-	void Start(){
+	void Start2(){
 		sub2.SetActive (true);
 		sub2.transform.FindChild ("wg").gameObject.SetActive (true);
 
@@ -102,6 +102,24 @@ public class bestwar : MonoBehaviour {
 	}
 	Status ES = Status.stage0;
 	public void stage1(){
+		StartCoroutine ("stage1lod");
+	}
+	IEnumerator stage1lod(){
+		FirstScreenSizeSetting.Instance.LD.StartLoding ();
+		for (int i = 1; i < 11; i++) {
+			string path;
+			if (i == 10) {
+				path = "sources/menu02/02_01/02_01_" + i.ToString ();
+			} else {
+				path = "sources/menu02/02_01/02_01_0" + i.ToString ();
+			}
+
+			tempsp.Add (FirstScreenSizeSetting.Instance.getsprite (path));
+			Debug.Log (tempsp [i - 1].name);
+			yield return new WaitForFixedUpdate ();
+		}
+		sub.transform.FindChild ("dim").gameObject.SetActive (false);
+		yield return new WaitForSeconds (0.1f);
 		sub.SetActive (true);
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("Ts").gameObject,0,1,0.75f,"C1",this.gameObject);
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild("mt").gameObject,1,0,0.75f,"C1",this.gameObject);
@@ -109,21 +127,25 @@ public class bestwar : MonoBehaviour {
 		sub.transform.FindChild ("dim").GetComponent<Image> ().color = new Color (0,0,0,0);
 		sub.transform.FindChild ("dim").gameObject.SetActive (true);
 		ES = Status.stage1;
+		FirstScreenSizeSetting.Instance.LD.EndLoding();
 	}
 	bool dataload = true;
 	public void stage2(){
+		FirstScreenSizeSetting.Instance.LD.StartLoding ();
+
 		sub2.SetActive (true);
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("Ts2").gameObject,0,1,0.75f,"C1",this.gameObject);
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild("mt").gameObject,1,0,0.75f,"C1",this.gameObject);
 		//FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,sub2.GetComponent<RectTransform>().anchoredPosition.y),sub,0.1f,"M1",this.gameObject,null);
 		sub2.transform.FindChild ("dim").GetComponent<Image> ().color = new Color (0,0,0,0);
 		sub2.transform.FindChild ("dim").gameObject.SetActive (true);
-		play ();
+		StartCoroutine("play");
 		sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").FindChild ("soff").FindChild ("son").gameObject.SetActive (true);
-		sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Seek").FindChild ("playerbg").FindChild ("pause").FindChild ("play").gameObject.SetActive (true);
+		//sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Seek").FindChild ("playerbg").FindChild ("pause").FindChild ("play").gameObject.SetActive (true);
 		sub2.transform.FindChild ("wg").GetComponent<monoflow.MPMP_ugui_Element> ().player.volume = 0.5f;
 		ES = Status.stage2;
 	}
+
 	public void stage3(){
 		Webview.GetComponent<SampleWebView> ().View ("https://www.youtube.com/channel/UCGUuc8iDYP00rBMnSKxaaXQ");
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("Ts3").gameObject,0,1,0.75f,"C1",this.gameObject);
@@ -131,6 +153,24 @@ public class bestwar : MonoBehaviour {
 		ES = Status.stage3;
 	}
 	public void stage4(){
+		StartCoroutine ("stage4lod");
+	}
+	IEnumerator stage4lod(){
+		FirstScreenSizeSetting.Instance.LD.StartLoding ();
+		for (int i = 1; i < 15; i++) {
+			string path;
+			if (i >= 10) {
+				path = "sources/menu02/02_04/02_04_" + i.ToString ();
+			} else {
+				path = "sources/menu02/02_04/02_04_0" + i.ToString ();
+			}
+
+			tempsp.Add (FirstScreenSizeSetting.Instance.getsprite (path));
+			Debug.Log (tempsp [i - 1].name);
+		}
+		sub4.transform.FindChild ("dim").gameObject.SetActive (false);
+	
+		yield return new WaitForSeconds (0.1f);
 		sub4.SetActive (true);
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("Ts4").gameObject,0,1,0.75f,"C1",this.gameObject);
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild("mt").gameObject,1,0,0.75f,"C1",this.gameObject);
@@ -138,10 +178,13 @@ public class bestwar : MonoBehaviour {
 		sub4.transform.FindChild ("dim").GetComponent<Image> ().color = new Color (0,0,0,0);
 		sub4.transform.FindChild ("dim").gameObject.SetActive (true);
 		ES = Status.stage4;
+		FirstScreenSizeSetting.Instance.LD.EndLoding();
 	}
 
-
 	public void items2(int i){
+		for (int b = 0; b < Tlist.Count; b++) {
+			Destroy (Tlist[b]);
+		}
 		ES = Status.stage4_1;
 		sub4.transform.FindChild ("wg").FindChild ("x").GetComponent<Image> ().raycastTarget = true;
 		FirstScreenSizeSetting.Instance.colorOnoffstop ();
@@ -163,13 +206,14 @@ public class bestwar : MonoBehaviour {
 
 
 
-	void play(){
+	IEnumerator play(){
 		sub2.transform.FindChild ("wg").FindChild ("x").GetComponent<Image> ().raycastTarget = true;
 
 		sub2.transform.FindChild ("wg").gameObject.SetActive (true);
 
-	
-
+		sub2.transform.FindChild ("wg").GetComponent<monoflow.MPMP_ugui_Element> ().player.Load ();
+		yield return new WaitForSeconds (1f);
+		FirstScreenSizeSetting.Instance.LD.EndLoding();
 		FirstScreenSizeSetting.Instance.ColorOnoff (sub2.transform.FindChild("dim").gameObject,0,0.75f,0.5f,"IT",this.gameObject);
 		FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,0),sub2.transform.FindChild ("wg").gameObject,0.2f,"IT",this.gameObject,null);
 
@@ -193,36 +237,40 @@ public class bestwar : MonoBehaviour {
 		sub2.SetActive (false);
 	}
 	void M1(){
-		for (int i = 1; i < 11; i++) {
-			string path;
-			if (i == 10) {
-				path = "sources/menu02/02_01/02_01_" + i.ToString ();
-			} else {
-				path = "sources/menu02/02_01/02_01_0" + i.ToString ();
-			}
-
-			tempsp.Add (FirstScreenSizeSetting.Instance.getsprite (path));
-			Debug.Log (tempsp [i - 1].name);
-		}
+//		for (int i = 1; i < 11; i++) {
+//			string path;
+//			if (i == 10) {
+//				path = "sources/menu02/02_01/02_01_" + i.ToString ();
+//			} else {
+//				path = "sources/menu02/02_01/02_01_0" + i.ToString ();
+//			}
+//
+//			tempsp.Add (FirstScreenSizeSetting.Instance.getsprite (path));
+//			Debug.Log (tempsp [i - 1].name);
+//		}
 		sub.transform.FindChild ("dim").gameObject.SetActive (false);
 
 	}
 	void M41(){
-		for (int i = 1; i < 15; i++) {
-			string path;
-			if (i >= 10) {
-				path = "sources/menu02/02_04/02_04_" + i.ToString ();
-			} else {
-				path = "sources/menu02/02_04/02_04_0" + i.ToString ();
-			}
-
-			tempsp.Add (FirstScreenSizeSetting.Instance.getsprite (path));
-			Debug.Log (tempsp [i - 1].name);
-		}
+//		for (int i = 1; i < 15; i++) {
+//			string path;
+//			if (i >= 10) {
+//				path = "sources/menu02/02_04/02_04_" + i.ToString ();
+//			} else {
+//				path = "sources/menu02/02_04/02_04_0" + i.ToString ();
+//			}
+//
+//			tempsp.Add (FirstScreenSizeSetting.Instance.getsprite (path));
+//			Debug.Log (tempsp [i - 1].name);
+//		}
 		sub4.transform.FindChild ("dim").gameObject.SetActive (false);
 	}
 	int status = 0;
 	public void items(int i){
+		for (int b = 0; b < Tlist.Count; b++) {
+			Destroy (Tlist[b]);
+		}
+		Tlist.Clear();
 		ES = Status.stage1_1;
 		sub.transform.FindChild ("wg").FindChild ("x").GetComponent<Image> ().raycastTarget = true;
 		FirstScreenSizeSetting.Instance.colorOnoffstop ();
@@ -247,18 +295,27 @@ public class bestwar : MonoBehaviour {
 	}
 	float savev;
 	public void soff(){
+		//Debug.Log ("off");
 		sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").FindChild ("soff").FindChild ("son").gameObject.SetActive (true);
+		sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider>().value = savev;
 		sub2.transform.FindChild ("wg").GetComponent<monoflow.MPMP_ugui_Element> ().player.volume = savev;
 	}
 	public void son(){
+
 		sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").FindChild ("soff").FindChild ("son").gameObject.SetActive (false);
-		savev = sub2.transform.FindChild ("wg").GetComponent<monoflow.MPMP_ugui_Element> ().player.volume;
+		savev = sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider>().value;
+		sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider>().value  = 0;
 		sub2.transform.FindChild ("wg").GetComponent<monoflow.MPMP_ugui_Element> ().player.volume = 0;
+	//	Debug.Log ("on" + sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider>().value);
 	}
 	public void onvc(){
-		sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").FindChild ("soff").FindChild ("son").gameObject.SetActive (true);
-		if (sub2.transform.FindChild ("wg").GetComponent<monoflow.MPMP_ugui_Element> ().player.volume == 0) {
+		//Debug.Log ("obvc");
+	//	Debug.Log ("onvc"+ sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider>().value);
+		//if (sub2.transform.FindChild ("wg").GetComponent<monoflow.MPMP_ugui_Element> ().player.volume == 0) {
+		if (sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider> ().value == 0) {
 			sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").FindChild ("soff").FindChild ("son").gameObject.SetActive (false);
+		} else {
+			sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").FindChild ("soff").FindChild ("son").gameObject.SetActive (true);
 		}
 	}
 	void setname(int i){
@@ -298,6 +355,7 @@ public class bestwar : MonoBehaviour {
 		sub.transform.FindChild ("wg").FindChild ("textb").GetChild (0).GetComponent<Text> ().text = s;
 	}
 	void setname4(int i){
+		sub4.transform.FindChild ("wg").FindChild ("textb").GetChild (0).GetComponent<LetterSpacing> ().spacing = 2;
 		string s = "";
 		switch (i) {
 		case 0:
@@ -331,9 +389,11 @@ public class bestwar : MonoBehaviour {
 			s = "최우수상 수상학교들";
 			break;
 		case 10:
+			sub4.transform.FindChild ("wg").FindChild ("textb").GetChild (0).GetComponent<LetterSpacing> ().spacing = -2;
 			s = "최우수상 - 대전 용상초등학교";
 			break;
 		case 11:
+			sub4.transform.FindChild ("wg").FindChild ("textb").GetChild (0).GetComponent<LetterSpacing> ().spacing = -2;
 			s = "최우수상 - 인천 공촌초등학교";
 			break;
 		case 12:
@@ -355,20 +415,36 @@ public class bestwar : MonoBehaviour {
 		sub4.transform.FindChild ("dim").gameObject.SetActive (false);
 	}
 	void IV(){
+		for (int i = 0; i < Tlist.Count; i++) {
+			Destroy (Tlist[i]);
+		}
+		Tlist.Clear();
 		sub.transform.FindChild ("wg").FindChild ("x").GetComponent<Image> ().raycastTarget = true;
 		sub.transform.FindChild ("wg").gameObject.SetActive (false);
 		sub.SetActive (false);
 	}
 	void IV4(){
+		for (int i = 0; i < Tlist.Count; i++) {
+			Destroy (Tlist[i]);
+		}
+		Tlist.Clear();
 		sub4.transform.FindChild ("wg").FindChild ("x").GetComponent<Image> ().raycastTarget = true;
 		sub4.transform.FindChild ("wg").gameObject.SetActive (false);
 		sub4.SetActive (false);
 	}
 	void IX(){
+		for (int i = 0; i < Tlist.Count; i++) {
+			Destroy (Tlist[i]);
+		}
+		Tlist.Clear();
 		sub.transform.FindChild ("wg").FindChild ("x").GetComponent<Image> ().raycastTarget = true;
 		sub.transform.FindChild ("wg").gameObject.SetActive (false);
 	}
 	void IX4(){
+		for (int i = 0; i < Tlist.Count; i++) {
+			Destroy (Tlist[i]);
+		}
+		Tlist.Clear();
 		sub4.transform.FindChild ("wg").FindChild ("x").GetComponent<Image> ().raycastTarget = true;
 		sub4.transform.FindChild ("wg").gameObject.SetActive (false);
 	}
@@ -523,6 +599,7 @@ public class bestwar : MonoBehaviour {
 		Debug.Log (ES);
 		if (ES == Status.stage1) {
 			tempsp.Clear ();
+			FirstScreenSizeSetting.Instance.memory ();
 			ES = Status.stage0;
 			top.transform.FindChild ("back").GetComponent<Image> ().raycastTarget = false;
 			if (top.transform.FindChild ("Ts").GetComponent<Image> ().color.a != 0) {
@@ -560,6 +637,7 @@ public class bestwar : MonoBehaviour {
 			FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("mt").gameObject, 0, 1, 0.75f, "C1", this.gameObject);
 		} else if (ES == Status.stage4) {
 			tempsp.Clear ();
+			FirstScreenSizeSetting.Instance.memory ();
 			ES = Status.stage0;
 	
 			top.transform.FindChild ("back").GetComponent<Image> ().raycastTarget = false;
@@ -588,6 +666,9 @@ public class bestwar : MonoBehaviour {
 			ES = Status.stage4;
 			close4 ();
 		} else {
+			StopAllCoroutines ();
+			FirstScreenSizeSetting.Instance.dad.Dimon ();
+			transform.parent.FindChild ("bot").gameObject.SetActive (false);
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2 (V.x, 0), this.gameObject, 0.1f, "gohome", this.gameObject, null);
 		}
 
@@ -596,6 +677,9 @@ public class bestwar : MonoBehaviour {
 		tempsp.Clear ();
 		ES = Status.stage0;
 		this.gameObject.SetActive (false);
+		FirstScreenSizeSetting.Instance.kipbackevent (
+			transform.parent.FindChild ("MAIN PAGE").GetComponent<Mainpage> ().close);
+		FirstScreenSizeSetting.Instance.dad.Dimoff ();
 	}
 	void M3(){
 		top.transform.FindChild ("back").GetComponent<Image> ().raycastTarget = true;

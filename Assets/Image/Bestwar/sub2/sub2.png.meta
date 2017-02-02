@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: fd97fd34bdceb43e68f809b02a7bf5d4
-timeCreated: 1485225344
+timeCreated: 1485943532
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -14,12 +14,13 @@ TextureImporter:
     21300014: 10x10
     21300016: player_bg1_0
     21300018: btn_exit
-  serializedVersion: 2
+    21300020: player_bg10
+  serializedVersion: 4
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
     mipMapFadeDistanceStart: 1
@@ -31,10 +32,8 @@ TextureImporter:
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -3
   maxTextureSize: 4096
@@ -45,9 +44,7 @@ TextureImporter:
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -55,34 +52,71 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_bg1
+      name: player_bg2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 786
-        height: 47
+        width: 1080
+        height: 101
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: player_bg2
+      name: player_bg10
       rect:
         serializedVersion: 2
         x: 0
-        y: 48
-        width: 786
-        height: 47
+        y: 102
+        width: 1080
+        height: 101
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -92,10 +126,10 @@ TextureImporter:
       name: player_bg1_0
       rect:
         serializedVersion: 2
-        x: 787
+        x: 1081
         y: 0
-        width: 221
-        height: 47
+        width: 294
+        height: 101
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -105,49 +139,10 @@ TextureImporter:
       name: btn_exit
       rect:
         serializedVersion: 2
-        x: 787
-        y: 48
-        width: 49
-        height: 49
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: sound_on
-      rect:
-        serializedVersion: 2
-        x: 837
-        y: 48
-        width: 32
-        height: 28
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: sound_off
-      rect:
-        serializedVersion: 2
-        x: 870
-        y: 48
-        width: 32
-        height: 28
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: player_dot
-      rect:
-        serializedVersion: 2
-        x: 903
-        y: 48
-        width: 29
-        height: 29
+        x: 1376
+        y: 0
+        width: 64
+        height: 64
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,10 +152,10 @@ TextureImporter:
       name: play
       rect:
         serializedVersion: 2
-        x: 837
-        y: 77
-        width: 24
-        height: 26
+        x: 1441
+        y: 0
+        width: 60
+        height: 63
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -170,10 +165,49 @@ TextureImporter:
       name: pause
       rect:
         serializedVersion: 2
-        x: 862
-        y: 77
-        width: 24
-        height: 26
+        x: 1502
+        y: 0
+        width: 60
+        height: 63
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: sound_off
+      rect:
+        serializedVersion: 2
+        x: 1563
+        y: 0
+        width: 60
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: sound_on
+      rect:
+        serializedVersion: 2
+        x: 1624
+        y: 0
+        width: 60
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: player_dot
+      rect:
+        serializedVersion: 2
+        x: 1685
+        y: 0
+        width: 43
+        height: 43
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,8 +217,8 @@ TextureImporter:
       name: 10x10
       rect:
         serializedVersion: 2
-        x: 888
-        y: 78
+        x: 1730
+        y: 1
         width: 8
         height: 8
       alignment: 9

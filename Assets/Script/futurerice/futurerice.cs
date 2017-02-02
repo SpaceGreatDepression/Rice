@@ -41,13 +41,19 @@ public class futurerice : MonoBehaviour {
 		statusI = 2;
 	}
 	public void stringclick(){
+		StartCoroutine ("datalod");
+
+	}
+
+	IEnumerator datalod(){
+		FirstScreenSizeSetting.Instance.LD.StartLoding ();
 		statusI = 1;
 		count = 14;
 		tempsp.Clear ();
 		FirstScreenSizeSetting.Instance.memory ();
 
 
-		for (int i = 1; i < 2; i++) {
+		for (int i = 1; i < count; i++) {
 			if (i >= 10) {
 				tempsp.Add (
 					FirstScreenSizeSetting.Instance.getsprite (fullpath + i.ToString ()));
@@ -58,7 +64,9 @@ public class futurerice : MonoBehaviour {
 				Debug.Log (fullpath +"0"+ i.ToString () + ".jpg");
 			}
 			Debug.Log (tempsp[i-1].name);
+			yield return new WaitForFixedUpdate ();
 		}
+		yield return new WaitForSeconds (0.1f);
 		status = 0;
 
 		sub.transform.FindChild ("mask").GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,V.y-120f);
@@ -70,13 +78,14 @@ public class futurerice : MonoBehaviour {
 
 		sub.transform.FindChild ("mask").GetChild(0).GetComponent<Image> ().sprite = tempsp [0];
 		sub.transform.FindChild ("mask").gameObject.SetActive (true);
-	
-	
+
+
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("Ts").gameObject,0,1,0.75f,"C1",this.gameObject);
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild("mt").gameObject,1,0,0.75f,"C1",this.gameObject);
 		FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,sub.GetComponent<RectTransform>().anchoredPosition.y),sub,0.1f,"M1",this.gameObject,null);
-
+		FirstScreenSizeSetting.Instance.LD.EndLoding ();
 	}
+
 	int status = 0;
 	bool subuse = false;
 	GameObject TempG(){
@@ -97,18 +106,18 @@ public class futurerice : MonoBehaviour {
 
 	}
 	void M1(){
-		for (int i = 2; i < count; i++) {
-			if (i >= 10) {
-				tempsp.Add (
-					FirstScreenSizeSetting.Instance.getsprite (fullpath + i.ToString ()));
-				Debug.Log (fullpath + i.ToString () + ".jpg");
-			} else {
-				tempsp.Add (
-					FirstScreenSizeSetting.Instance.getsprite (fullpath +"0"+ i.ToString ()));
-				Debug.Log (fullpath +"0"+ i.ToString () + ".jpg");
-			}
-			Debug.Log (tempsp[i-1].name);
-		}
+//		for (int i = 2; i < count; i++) {
+//			if (i >= 10) {
+//				tempsp.Add (
+//					FirstScreenSizeSetting.Instance.getsprite (fullpath + i.ToString ()));
+//				Debug.Log (fullpath + i.ToString () + ".jpg");
+//			} else {
+//				tempsp.Add (
+//					FirstScreenSizeSetting.Instance.getsprite (fullpath +"0"+ i.ToString ()));
+//				Debug.Log (fullpath +"0"+ i.ToString () + ".jpg");
+//			}
+//			Debug.Log (tempsp[i-1].name);
+//		}
 //		sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = true;
 //		sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = true;
 	}
@@ -203,12 +212,18 @@ public class futurerice : MonoBehaviour {
 			FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("Ts2").gameObject, 1, 0, 0.75f, "C1", this.gameObject);
 			FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("mt").gameObject, 0, 1, 0.75f, "C1", this.gameObject);
 		}else if(statusI == 0){
+			StopAllCoroutines ();
+			transform.parent.FindChild ("bot").gameObject.SetActive (false);
+			FirstScreenSizeSetting.Instance.dad.Dimon ();
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2 (V.x, 0), this.gameObject, 0.1f, "gohome", this.gameObject, null);
 		}
 	}
 	void gohome(){
 		statusI = 0;
 		this.gameObject.SetActive (false);
+		FirstScreenSizeSetting.Instance.kipbackevent (
+			transform.parent.FindChild ("MAIN PAGE").GetComponent<Mainpage> ().close);
+		FirstScreenSizeSetting.Instance.dad.Dimoff ();
 	}
 	void M3(){
 		top.transform.FindChild ("back").GetComponent<Image> ().raycastTarget = true;

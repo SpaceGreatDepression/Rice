@@ -53,12 +53,51 @@ public class bestpractice : MonoBehaviour {
 		V = v;
 		Awake2 ();
 	}
+	int maxc = 0;
+	int nowc = 0;
 	public void gomaskclick(GameObject g){
+		nowc = 0;
+		maxc = 1;
 		Debug.Log ("gomaskclick");
-		g.transform.parent.parent.FindChild ("go"+g.name).GetComponent<Image> ().raycastTarget = false;
+		go1.transform.parent.parent.FindChild ("go"+go1.name).GetComponent<Image> ().raycastTarget = false;
+		go2.transform.parent.parent.FindChild ("go"+go2.name).GetComponent<Image> ().raycastTarget = false;
+		go3.transform.parent.parent.FindChild ("go"+go3.name).GetComponent<Image> ().raycastTarget = false;
 		StartCoroutine ("smoothm",g.GetComponent<RectTransform>());
+		switch (g.name) {
+		case "1":
+			if (go2.GetComponent<RectTransform> ().anchoredPosition.y == 0) {
+				maxc++;
+				StartCoroutine ("smoothm",go2.GetComponent<RectTransform>());
+			}
+			if (go3.GetComponent<RectTransform> ().anchoredPosition.y == 0) {
+				maxc++;
+				StartCoroutine ("smoothm",go3.GetComponent<RectTransform>());
+			}
+			break;
+		case "2":
+			if (go1.GetComponent<RectTransform> ().anchoredPosition.y == 0) {
+				maxc++;
+				StartCoroutine ("smoothm",go1.GetComponent<RectTransform>());
+			}
+			if (go3.GetComponent<RectTransform> ().anchoredPosition.y == 0) {
+				maxc++;
+				StartCoroutine ("smoothm",go3.GetComponent<RectTransform>());
+			}
+			break;
+		case "3":
+			if (go2.GetComponent<RectTransform> ().anchoredPosition.y == 0) {
+				maxc++;
+				StartCoroutine ("smoothm",go2.GetComponent<RectTransform>());
+			}
+			if (go1.GetComponent<RectTransform> ().anchoredPosition.y == 0) {
+				maxc++;
+				StartCoroutine ("smoothm",go1.GetComponent<RectTransform>());
+			}
+			break;
+		}
 	}
 	IEnumerator smoothm(RectTransform R){
+
 		Vector2 vel = new Vector2(0,0);
 		float he = R.GetComponent<RectTransform>().sizeDelta.y;
 		if (R.anchoredPosition.y == 0) {
@@ -74,7 +113,13 @@ public class bestpractice : MonoBehaviour {
 				}
 				if (Mathf.Abs (vel.y) < 0.3f) {
 					R.anchoredPosition = new Vector2 (0, R.sizeDelta.y);
-					R.transform.parent.parent.FindChild ("go"+R.name).GetComponent<Image> ().raycastTarget = true;
+					nowc++;
+					Debug.Log (maxc +" : "+ nowc);
+					if (maxc <= nowc) {
+						go1.transform.parent.parent.FindChild ("go" + go1.name).GetComponent<Image> ().raycastTarget = true;
+						go2.transform.parent.parent.FindChild ("go" + go2.name).GetComponent<Image> ().raycastTarget = true;
+						go3.transform.parent.parent.FindChild ("go" + go3.name).GetComponent<Image> ().raycastTarget = true;
+					}
 					if (int.Parse (R.name) + 1 <= 3) {
 						R.transform.parent.parent.FindChild ("go" + (int.Parse (R.name) + 1).ToString()+"s").GetComponent<RectTransform> ().anchoredPosition = new Vector2(0,
 							-Midmenusizey);
@@ -97,7 +142,13 @@ public class bestpractice : MonoBehaviour {
 				}
 				if (Mathf.Abs (vel.y) < 0.3f) {
 					R.anchoredPosition = new Vector2 (0, 0);
-					R.transform.parent.parent.FindChild ("go"+R.name).GetComponent<Image> ().raycastTarget = true;
+					nowc++;
+					Debug.Log (maxc +" : "+ nowc);
+					if (maxc <= nowc) {
+						go1.transform.parent.parent.FindChild ("go" + go1.name).GetComponent<Image> ().raycastTarget = true;
+						go2.transform.parent.parent.FindChild ("go" + go2.name).GetComponent<Image> ().raycastTarget = true;
+						go3.transform.parent.parent.FindChild ("go" + go3.name).GetComponent<Image> ().raycastTarget = true;
+					}
 					if (int.Parse (R.name) + 1 <= 3) {
 						R.transform.parent.parent.FindChild ("go" + (int.Parse (R.name) + 1).ToString()+"s").GetComponent<RectTransform> ().anchoredPosition = new Vector2(0,
 							-Midmenusizey-((float)R.transform.childCount*Midsubsizey));
@@ -114,6 +165,8 @@ public class bestpractice : MonoBehaviour {
 	List<Sprite> tempsp =new List<Sprite>();
 	string cha;
 	public void stringclick(string s){
+		StartCoroutine ("datalod",s);
+		/*
 		subuse = true;
 		tempsp.Clear ();
 		FirstScreenSizeSetting.Instance.memory ();
@@ -171,7 +224,7 @@ public class bestpractice : MonoBehaviour {
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("st").FindChild (cha).gameObject,0,1,0.75f,"C1",this.gameObject);
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("Ts").gameObject,0,1,0.75f,"C1",this.gameObject);
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild("mt").gameObject,1,0,0.75f,"C1",this.gameObject);
-		FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,sub.GetComponent<RectTransform>().anchoredPosition.y),sub,0.1f,"M1",this.gameObject,null);
+		FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,sub.GetComponent<RectTransform>().anchoredPosition.y),sub,0.1f,"M1",this.gameObject,null);*/
 
 	}
 	int status = 0;
@@ -190,11 +243,43 @@ public class bestpractice : MonoBehaviour {
 		Tlist.Add (Tempimage);
 		return Tempimage;
 	}
-	void C1(){
+	IEnumerator datalod(string s){
+		FirstScreenSizeSetting.Instance.LD.StartLoding ();
 
-	}
-	void M1(){
-		for (int i = 2; i < count; i++) {
+
+		subuse = true;
+		tempsp.Clear ();
+		FirstScreenSizeSetting.Instance.memory ();
+		switch (s) {
+		case "01_01_school02":
+			count = 14;
+			break;
+		case "01_02_school04":
+		case "01_02_school03":
+		case "01_01_school03":
+			count = 15;
+			break;
+		case "01_03_school02":
+		case "01_03_school01":
+		case "01_01_school01":
+		case "01_02_school01":
+		case "01_02_school02":			
+		case "01_02_school05":
+			count = 16;
+			break;
+		}
+		cha = "";
+		char[] ch = s.ToCharArray ();
+		//		for (int i = 0; i < ch.Length - 1; i++) {
+		//			cha += ch [i].ToString ();
+		//		}
+
+		fullpath = path+"/"+ s+"/"+s+"_";
+
+
+
+
+		for (int i = 1; i < count; i++) {
 			if (i >= 10) {
 				tempsp.Add (
 					FirstScreenSizeSetting.Instance.getsprite (fullpath + i.ToString ()));
@@ -205,7 +290,45 @@ public class bestpractice : MonoBehaviour {
 				Debug.Log (fullpath +"0"+ i.ToString () + ".jpg");
 			}
 			Debug.Log (tempsp[i-1].name);
+			yield return new WaitForFixedUpdate ();
 		}
+		yield return new WaitForSeconds (0.1f);
+
+		status = 0;
+
+		sub.transform.FindChild ("mask").GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,V.y-120f);
+
+		sub.transform.FindChild ("mask").GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
+		sub.transform.FindChild ("mask").GetChild(0).GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,1818f/1440f*V.x);
+
+		sub.transform.FindChild ("mask").GetChild(0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
+
+		sub.transform.FindChild ("mask").GetChild(0).GetComponent<Image> ().sprite = tempsp [0];
+		sub.transform.FindChild ("mask").gameObject.SetActive (true);
+		cha = ch [4].ToString ()+"_"+ch[13].ToString();
+		top.transform.FindChild ("st").FindChild (cha).GetComponent<Image> ().color = new Color (1,1,1,0);
+		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("st").FindChild (cha).gameObject,0,1,0.75f,"C1",this.gameObject);
+		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("Ts").gameObject,0,1,0.75f,"C1",this.gameObject);
+		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild("mt").gameObject,1,0,0.75f,"C1",this.gameObject);
+		FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,sub.GetComponent<RectTransform>().anchoredPosition.y),sub,0.1f,"M1",this.gameObject,null);
+		FirstScreenSizeSetting.Instance.LD.EndLoding ();
+	}
+	void C1(){
+
+	}
+	void M1(){
+//		for (int i = 2; i < count; i++) {
+//			if (i >= 10) {
+//				tempsp.Add (
+//					FirstScreenSizeSetting.Instance.getsprite (fullpath + i.ToString ()));
+//				Debug.Log (fullpath + i.ToString () + ".jpg");
+//			} else {
+//				tempsp.Add (
+//					FirstScreenSizeSetting.Instance.getsprite (fullpath +"0"+ i.ToString ()));
+//				Debug.Log (fullpath +"0"+ i.ToString () + ".jpg");
+//			}
+//			Debug.Log (tempsp[i-1].name);
+//		}
 //		sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = true;
 //		sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = true;
 	}
@@ -297,11 +420,30 @@ public class bestpractice : MonoBehaviour {
 			sub.transform.FindChild ("L").gameObject.SetActive (false);
 			sub.transform.FindChild ("R").gameObject.SetActive (true);
 		} else {
+			StopAllCoroutines ();
+			go1.GetComponent<RectTransform> ().anchoredPosition = new Vector2(0,go1.GetComponent<RectTransform> ().sizeDelta.y);
+			go2.GetComponent<RectTransform> ().anchoredPosition = new Vector2(0,go2.GetComponent<RectTransform> ().sizeDelta.y);
+			go3.GetComponent<RectTransform> ().anchoredPosition = new Vector2(0,go3.GetComponent<RectTransform> ().sizeDelta.y);
+			go1.transform.parent.parent.FindChild ("go" + go1.name).GetComponent<Image> ().raycastTarget = true;
+			go2.transform.parent.parent.FindChild ("go" + go2.name).GetComponent<Image> ().raycastTarget = true;
+			go3.transform.parent.parent.FindChild ("go" + go3.name).GetComponent<Image> ().raycastTarget = true;
+			mid.transform.FindChild ("go1s").GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
+			mid.transform.FindChild ("go1s").FindChild("go2s").GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,-Midmenusizey);
+			mid.transform.FindChild ("go1s").FindChild("go2s").FindChild("go3s").GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,-Midmenusizey);
+			go1.transform.parent.parent.FindChild ("go1").FindChild ("arrow").transform.localScale = new Vector3 (1,1,1);
+			go2.transform.parent.parent.FindChild ("go2").FindChild ("arrow").transform.localScale = new Vector3 (1,1,1);
+			go3.transform.parent.parent.FindChild ("go3").FindChild ("arrow").transform.localScale = new Vector3 (1,1,1);
+			transform.parent.FindChild ("bot").gameObject.SetActive (false);
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2 (V.x, 0), this.gameObject, 0.1f, "gohome", this.gameObject, null);
+			FirstScreenSizeSetting.Instance.dad.Dimon ();
 		}
 	}
 	void gohome(){
+
+		FirstScreenSizeSetting.Instance.kipbackevent (
+			transform.parent.FindChild ("MAIN PAGE").GetComponent<Mainpage> ().close);
 		this.gameObject.SetActive (false);
+		FirstScreenSizeSetting.Instance.dad.Dimoff ();
 	}
 	void M3(){
 		top.transform.FindChild ("back").GetComponent<Image> ().raycastTarget = true;

@@ -9,15 +9,19 @@ public class FirstScreenSizeSetting : MonoBehaviour {
 	public GameObject TempCanvers;
 
 	public Vector2 Target;
-
-
+	public delegate void BackEvent();
+	public System.Action EventAction;
 
 	Vector2 BGSize; 
 
 	public float Gap;
 	public Vector2 Size;
 
-
+	public Loding LD;
+	public dimanddim dad;
+	public void kipbackevent(BackEvent B){
+		EventAction = () => B ();
+	}
 
 	private static FirstScreenSizeSetting _instance = null;
 	public static FirstScreenSizeSetting Instance{
@@ -106,12 +110,16 @@ public class FirstScreenSizeSetting : MonoBehaviour {
 	public float hh;
 	public Vector2 Origin;
 	public void set(float W,float H){
+		
 		//local = new Vector3 (1,1,1);
 		Size = new Vector2 (W,H);
+
 		Origin = Size;
 		//if (Size.x > 800) {
 			Size = new Vector2 (800f,H/W*800f);
 	//	}
+
+
 		local = new Vector3(W/800f,H/(H/W*800f));
 		transform.FindChild ("Main").transform.localScale = local;
 		transform.GetChild (0).FindChild ("bot").GetComponent<RectTransform> ().anchoredPosition = new Vector2 (-Size.x / 2f,-Size.y/2f);
@@ -277,10 +285,12 @@ public class FirstScreenSizeSetting : MonoBehaviour {
 		#endif
 */
 	
-		transform.GetChild (0).FindChild ("MAIN PAGE").GetComponent<Mainpage> ().setting (Size);
+		transform.GetChild (0).FindChild ("MAIN PAGE").GetComponent<Mainpage> ().setting (Size,Origin);
 		transform.GetChild (0).FindChild ("BEST PRACTICE").GetComponent<bestpractice> ().setting (Size);
 		transform.GetChild (0).FindChild ("BEST WAR").GetComponent<bestwar> ().setting (Size);
 		transform.GetChild (0).FindChild ("FUTURE RICE").GetComponent<futurerice> ().setting (Size);
+		transform.GetChild (0).FindChild ("Loding").GetComponent<Loding> ().setting (Size);
+		transform.GetChild (0).FindChild ("dimanddim").GetComponent<dimanddim> ().setting (Size);
 
 	}
 	public Sprite getsprite(string path){
@@ -454,6 +464,25 @@ public class FirstScreenSizeSetting : MonoBehaviour {
 		public string m;
 		public GameObject g;
 		public object o;
+	}
+
+	void Update()
+	{
+		//if(Application.platform == RuntimePlatform.Android)
+		//{
+			if(Input.GetKeyDown(KeyCode.Escape))
+			{
+			Debug.Log ("esc");
+
+				if (EventAction != null) {
+				if (!LD.dim.activeSelf) {
+					EventAction ();
+				}
+				}
+
+
+			}
+		//}
 	}
 }
 
