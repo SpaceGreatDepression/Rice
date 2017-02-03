@@ -42,6 +42,7 @@ public class futurerice : MonoBehaviour {
 	}
 	public void stringclick(){
 		FirstScreenSizeSetting.Instance.dad.Dimon ();
+		sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = true;
 		StartCoroutine ("datalod");
 
 	}
@@ -101,6 +102,7 @@ public class futurerice : MonoBehaviour {
 		Tempimage.transform.GetChild(0).GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,1818f/1440f*V.x);
 		Tempimage.transform.GetChild(0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
 		Tempimage.transform.GetChild (0).GetComponent<Image> ().raycastTarget = false;
+		Tempimage.transform.GetChild (0).GetComponent<PinchZoomandview> ().enabled = false;
 		Tlist.Add (Tempimage);
 		return Tempimage;
 	}
@@ -139,7 +141,9 @@ public class futurerice : MonoBehaviour {
 //			sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;
 //			sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = false;
 	
-	
+			sub.transform.FindChild ("mask").GetChild (0).transform.localScale = new Vector3 (1,1,1);
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 0);
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = false;
 			Tg.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
 			Tg.SetActive (true);
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(V.x,0),Tg,0.1f,"M2",this.gameObject,Tg);
@@ -163,6 +167,9 @@ public class futurerice : MonoBehaviour {
 			Tg.transform.GetChild(0).GetComponent<Image> ().sprite = tempsp [status];
 //				sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;
 //			sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = false;
+			sub.transform.FindChild ("mask").GetChild (0).transform.localScale = new Vector3 (1,1,1);
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 0);
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = false;
 				Tg.gameObject.SetActive (true);
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,0),Tg,0.1f,"M2",this.gameObject,Tg);
 			}
@@ -186,7 +193,7 @@ public class futurerice : MonoBehaviour {
 
 		sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = true;
 		sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = true;
-
+		sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = true;
 	
 
 	}
@@ -212,6 +219,7 @@ public class futurerice : MonoBehaviour {
 			sub.transform.FindChild ("mask").GetChild (0).GetComponent<Image> ().raycastTarget = false;
 			sub.transform.FindChild ("L").gameObject.SetActive (false);
 			sub.transform.FindChild ("R").gameObject.SetActive (true);
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = true;
 		} else if (statusI == 2) {
 			statusI = 0;
 			Webview.GetComponent<SampleWebView> ().close ();

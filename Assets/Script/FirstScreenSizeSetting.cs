@@ -468,25 +468,32 @@ public class FirstScreenSizeSetting : MonoBehaviour {
 		public GameObject g;
 		public object o;
 	}
-
-	void Update()
-	{
-		//if(Application.platform == RuntimePlatform.Android)
-		//{
-			if(Input.GetKeyDown(KeyCode.Escape))
-			{
-			Debug.Log ("esc");
-
-				if (EventAction != null) {
-				if (!LD.dim.activeSelf) {
-					if(!dad.dim.activeSelf)
+	public void back(){
+		if (EventAction != null) {
+			if (!LD.dim.activeSelf) {
+				if(!dad.dim.activeSelf)
 					EventAction ();
-				}
-				}
-
-
 			}
-		//}
+		}
 	}
+//	void Update()
+//	{
+//		//if(Application.platform == RuntimePlatform.Android)
+//		//{
+//			if(Input.GetKeyDown(KeyCode.Escape))
+//			{
+//			Debug.Log ("esc");
+//
+//				if (EventAction != null) {
+//				if (!LD.dim.activeSelf) {
+//					if(!dad.dim.activeSelf)
+//					EventAction ();
+//				}
+//				}
+//
+//
+//			}
+//		//}
+//	}
 }
 

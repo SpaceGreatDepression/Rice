@@ -9,9 +9,10 @@ public class PinchZoomandview : MonoBehaviour
 	public float orthoZoomSpeed = 0.5f;        // The rate of change of the orthographic size in orthographic mode.
 	public RectTransform target;
 	public RectTransform mask;
-
+	public bool multi = true;
+	Vector2 V;
 	void Start(){
-
+		V = FirstScreenSizeSetting.Instance.Size;
 		PinchOn (this.transform);
 	}
 	Vector2 defultsize;
@@ -89,7 +90,7 @@ public class PinchZoomandview : MonoBehaviour
 		//if (Pinchboo) {
 		//	Debug.Log ("Input.touchCount : " + Input.touchCount);
 		//pivotset ();
-		if (Input.touchCount >= 2) {
+		if (Input.touchCount >= 2&&multi) {
 			if (fist) {
 				fist = false;
 				pivotset ();
@@ -159,11 +160,21 @@ public class PinchZoomandview : MonoBehaviour
 			pivotreset ();
 		//	Debug.Log ("checkout");
 			Vector2 v = target.GetComponent<RectTransform> ().anchoredPosition;
+
 			Vector2 M = maxsize ();
+			if (!multi) {
+
+				//v = new Vector2(target.GetComponent<RectTransform> ().anchoredPosition.y,target.GetComponent<RectTransform> ().anchoredPosition.x);
+				M = new Vector2((target.GetComponent<RectTransform>().sizeDelta.y-V.x)/2f,(target.GetComponent<RectTransform>().sizeDelta.x-V.y)/2f);
+			}
 		//	Debug.Log ("maxsize : " + M);
 			//smooth = false;
+			//Debug.Log("v : " + v);
+			//Debug.Log("M : " + M);
 			if (v.x > M.x || v.x < -M.x || v.y > M.y || v.y < -M.y) {
-				smooth = true;
+				if (multi) {
+					smooth = true;
+				}
 				float x = v.x;
 				if (v.x > M.x) {
 					x = M.x;
@@ -179,9 +190,13 @@ public class PinchZoomandview : MonoBehaviour
 				velo = Vector2.zero;
 
 
-
+			
 				gotop = new Vector2 (x, y);
+			
 					GetComponent<RectTransform> ().anchoredPosition = gotop;
+				if (target.GetComponent<RectTransform> ().sizeDelta.y <= V.x&&!multi) {
+					GetComponent<RectTransform> ().anchoredPosition = velo;
+				}
 			}
 
 		} else if(smooth) {
@@ -209,18 +224,30 @@ public class PinchZoomandview : MonoBehaviour
 			Imageclick = true;
 		}
 	}
+	public void ImageDown2(){
+		
+			size = true;
+			vel = FirstScreenSizeSetting.Instance.InputMousePosition ();
 
+			//pinchoff ();
+			Imageclick = true;
+
+	}
 
 
 
 	public void ImageUp(){
 		#if UNITY_EDITOR
 		Imageclick = false;
+		if (multi) {
 		checkout ();
+		}
 		#else
 		//	if (Input.touchCount <= 1) {
 		Imageclick = false;
+		if (multi) {
 		checkout ();
+		}
 		//	}
 		#endif
 

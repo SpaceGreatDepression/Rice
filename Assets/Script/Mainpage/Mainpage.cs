@@ -8,22 +8,87 @@ public class Mainpage : MonoBehaviour {
 	float topgap = 0;
 	Vector2 V = new Vector2(0,0);
 	Vector2 Ori = new Vector2(0,0);
+
+
+//	IEnumerator Start(){
+//		while (true) {
+//			for (int i = 0; i < mid.transform.childCount; i++) {
+//				mid.transform.GetChild (i).GetComponent<Image> ().color = new Color (1, 1, 1, 0);
+//				mid.transform.GetChild (i).GetComponent<Image> ().raycastTarget = false;
+//			}
+//			Bg.GetComponent<Image> ().color = new Color (1, 1, 1, 1);
+//			yield return new WaitForSeconds (1f);
+//
+//
+//			while (true) {
+//				for (int i = 0; i < mid.transform.childCount; i++) {
+//					mid.transform.GetChild (i).GetComponent<Image> ().color += new Color (0, 0, 0, 0.05f);
+//
+//				}
+//				Bg.GetComponent<Image> ().color -= new Color (0, 0, 0, 0.42f / 20f);
+//				if (mid.transform.GetChild (0).GetComponent<Image> ().color.a >= 1) {
+//					for (int i = 0; i < mid.transform.childCount; i++) {
+//						mid.transform.GetChild (i).GetComponent<Image> ().color = new Color (1, 1, 1, 1);
+//						mid.transform.GetChild (i).GetComponent<Image> ().raycastTarget = true;
+//					}
+//					break;
+//				}
+//				yield return new WaitForFixedUpdate ();
+//			}
+//
+//
+//
+//
+//			yield return new WaitForSeconds (3f);
+//		}
+//	}
+
 	IEnumerator Start(){
-		yield return new WaitForSeconds (2f);
-		while (true) {
+		//while (true) {
 			for (int i = 0; i < mid.transform.childCount; i++) {
-				mid.transform.GetChild (i).GetComponent<Image> ().color += new Color (0,0,0,0.02f);
+				mid.transform.GetChild (i).GetComponent<Image> ().color = new Color (1, 1, 1, 0);
+				mid.transform.GetChild (i).GetComponent<Image> ().raycastTarget = false;
 			}
-			if (mid.transform.GetChild (0).GetComponent<Image> ().color.a >= 1) {
-				for (int i = 0; i < mid.transform.childCount; i++) {
-					mid.transform.GetChild (i).GetComponent<Image> ().color = new Color (1,1,1,1);
-					mid.transform.GetChild (i).GetComponent<Image> ().raycastTarget = true;
-				}
+			Bg.GetComponent<Image> ().color = new Color (1, 1, 1, 1);
+			yield return new WaitForSeconds (1f);
+
+			StartCoroutine ("spe");
+
+			yield return new WaitForSeconds (0.2f);
+			for (int i = 0; i < mid.transform.childCount; i++) {
+
+				StartCoroutine( meru (i));
+				yield return new WaitForSeconds (0.2f);
+			}
+
+
+
+		//	yield return new WaitForSeconds (3f);
+	//	}
+	}
+	IEnumerator spe(){
+		while (true) {
+
+			Bg.GetComponent<Image> ().color -= new Color (0, 0, 0, 0.42f / 20f);
+			if (Bg.GetComponent<Image> ().color.a <= 0.58f) {
+				Bg.GetComponent<Image> ().color = new Color (1,1,1,0.58f);
 				break;
 			}
 			yield return new WaitForFixedUpdate ();
 		}
 	}
+	IEnumerator meru(int i){
+		while (true) {
+			mid.transform.GetChild (i).GetComponent<Image> ().color += new Color (0, 0, 0, 0.05f);
+			if (mid.transform.GetChild (i).GetComponent<Image> ().color.a >= 1) {
+				mid.transform.GetChild (i).GetComponent<Image> ().color = new Color (1, 1, 1, 1);
+				mid.transform.GetChild (i).GetComponent<Image> ().raycastTarget = true;
+				break;
+			}
+			yield return new WaitForFixedUpdate ();
+		}
+	}
+
 	void Awake2(){
 
 		if (V.x == 0) {

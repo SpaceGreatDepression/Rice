@@ -166,6 +166,7 @@ public class bestpractice : MonoBehaviour {
 	string cha;
 	public void stringclick(string s){
 		FirstScreenSizeSetting.Instance.dad.Dimon ();
+		sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = true;
 		StartCoroutine ("datalod",s);
 		/*
 		subuse = true;
@@ -241,6 +242,7 @@ public class bestpractice : MonoBehaviour {
 		Tempimage.transform.GetChild(0).GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,1818f/1440f*V.x);
 		Tempimage.transform.GetChild(0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
 		Tempimage.transform.GetChild (0).GetComponent<Image> ().raycastTarget = false;
+		Tempimage.transform.GetChild (0).GetComponent<PinchZoomandview> ().enabled = false;
 		Tlist.Add (Tempimage);
 		return Tempimage;
 	}
@@ -351,7 +353,9 @@ public class bestpractice : MonoBehaviour {
 //			sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;
 //			sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = false;
 	
-	
+			sub.transform.FindChild ("mask").GetChild (0).transform.localScale = new Vector3 (1,1,1);
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 0);
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = false;
 			Tg.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
 			Tg.SetActive (true);
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(V.x,0),Tg,0.1f,"M2",this.gameObject,Tg);
@@ -375,6 +379,9 @@ public class bestpractice : MonoBehaviour {
 			Tg.transform.GetChild(0).GetComponent<Image> ().sprite = tempsp [status];
 //				sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;
 //			sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = false;
+			sub.transform.FindChild ("mask").GetChild (0).transform.localScale = new Vector3 (1,1,1);
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 0);
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = false;
 				Tg.gameObject.SetActive (true);
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,0),Tg,0.1f,"M2",this.gameObject,Tg);
 			}
@@ -398,7 +405,7 @@ public class bestpractice : MonoBehaviour {
 
 		sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = true;
 		sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = true;
-
+		sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = true;
 	
 
 	}
@@ -442,6 +449,7 @@ public class bestpractice : MonoBehaviour {
 			go3.transform.parent.parent.FindChild ("go3").FindChild ("arrow").transform.localScale = new Vector3 (1,1,1);
 			transform.parent.FindChild ("bot").gameObject.SetActive (false);
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2 (V.x, 0), this.gameObject, 0.1f, "gohome", this.gameObject, null);
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = true;
 			FirstScreenSizeSetting.Instance.dad.Dimon ();
 		}
 	}

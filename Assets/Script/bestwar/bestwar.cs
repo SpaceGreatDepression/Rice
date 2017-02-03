@@ -27,6 +27,7 @@ public class bestwar : MonoBehaviour {
 		sub.transform.FindChild("wg").FindChild("mask").GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x-14f,V.x*(683f/1024f)-14);
 		sub.transform.FindChild("wg").FindChild("mask").GetChild(0).GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x-14f,V.x*(683f/1024f)-14);
 		sub.transform.FindChild ("wg").GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,-(V.y/2f)-(sub.transform.FindChild("wg").GetComponent<RectTransform> ().sizeDelta.y/2f)-24.5f);
+		sub.transform.FindChild ("wg").FindChild ("dim").GetComponent<RectTransform> ().sizeDelta = V;
 		wgp = sub.transform.FindChild ("wg").GetComponent<RectTransform> ().anchoredPosition.y;
 		sub2.transform.FindChild("wg").GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,V.x*(683f/1024f));
 		sub2.transform.FindChild("wg").FindChild("RawImage").GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x-14f,V.x*(683f/1024f)-14);
@@ -35,7 +36,7 @@ public class bestwar : MonoBehaviour {
 		sub2.transform.FindChild("dim").GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,V.y-120f);
 		sub4.GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,V.y-120f);;
 		sub4.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (V.x,-60f);
-
+		sub4.transform.FindChild ("wg").FindChild ("dim").GetComponent<RectTransform> ().sizeDelta = V;
 		sub4.transform.FindChild("dim").GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,V.y-120f);
 		sub4.transform.FindChild("wg").GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,V.x*(683f/1024f));
 		sub4.transform.FindChild("wg").FindChild("mask").GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x-14f,V.x*(683f/1024f)-14);
@@ -98,7 +99,7 @@ public class bestwar : MonoBehaviour {
 		FirstScreenSizeSetting.Instance.dad.Dimoff ();
 	}
 	enum Status{
-		stage1,stage2,stage3,stage4,stage1_1,stage0,stage4_1
+		stage1,stage2,stage3,stage4,stage1_1,stage0,stage4_1,stage1_1_1,stage4_1_1
 	}
 	Status ES = Status.stage0;
 	public void stage1(){
@@ -187,6 +188,7 @@ public class bestwar : MonoBehaviour {
 	}
 
 	public void items2(int i){
+
 		for (int b = 0; b < Tlist.Count; b++) {
 			Destroy (Tlist[b]);
 		}
@@ -273,6 +275,7 @@ public class bestwar : MonoBehaviour {
 	}
 	int status = 0;
 	public void items(int i){
+
 		for (int b = 0; b < Tlist.Count; b++) {
 			Destroy (Tlist[b]);
 		}
@@ -321,12 +324,61 @@ public class bestwar : MonoBehaviour {
 		//Debug.Log ("obvc");
 	//	Debug.Log ("onvc"+ sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider>().value);
 		//if (sub2.transform.FindChild ("wg").GetComponent<monoflow.MPMP_ugui_Element> ().player.volume == 0) {
+		FirstScreenSizeSetting.Instance.AD.Vg();
+		if(FirstScreenSizeSetting.Instance.AD.nowvolume !=(int)sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider> ().value){
 		FirstScreenSizeSetting.Instance.AD.Vset ((int)sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider> ().value);
+		}
 		if (sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider> ().value == 0) {
 			sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").FindChild ("soff").FindChild ("son").gameObject.SetActive (false);
 		} else {
 			sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").FindChild ("soff").FindChild ("son").gameObject.SetActive (true);
 		}
+	}
+	public void expand(GameObject g){
+		if (g.transform.parent.childCount == 7) {
+			g.transform.GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x, V.y);
+			g.transform.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 60f);
+			g.transform.GetChild (0).transform.localEulerAngles = new Vector3 (0, 0, -90f);
+
+			g.transform.GetChild (0).GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.y, V.y * (683f / 1024f));
+			g.transform.parent.parent.FindChild ("expand").gameObject.SetActive (true);
+			g.transform.parent.FindChild ("L").gameObject.SetActive (false);
+			g.transform.parent.FindChild ("R").gameObject.SetActive (false);
+			g.transform.parent.FindChild ("ex").gameObject.SetActive (false);
+			transform.parent.FindChild ("bot").gameObject.SetActive (false);
+			g.transform.parent.FindChild ("dim").gameObject.SetActive (true);
+			g.transform.parent.parent.GetComponent<RectMask2D> ().enabled = false;
+			g.transform.GetChild (0).GetComponent<PinchZoomandview> ().enabled = true;
+			if (g.transform.parent.parent.name == "sub") {
+				ES = Status.stage1_1_1;
+			} else {
+				ES = Status.stage4_1_1;
+			}
+		}
+		//g.transform.SetAsLastSibling ();
+	}
+	public void reduce(GameObject g){
+		g.transform.GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x-14f,V.x*(683f/1024f)-14);
+		g.transform.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0f);
+		g.transform.GetChild (0).transform.localEulerAngles = new Vector3 (0,0,0);
+
+		g.transform.GetChild (0).GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x-14f,V.x*(683f/1024f)-14f);
+		g.transform.GetChild (0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
+		g.transform.parent.parent.FindChild("expand").gameObject.SetActive (false);
+		g.transform.parent.FindChild ("L").gameObject.SetActive (true);
+		g.transform.parent.FindChild ("R").gameObject.SetActive (true);
+		g.transform.parent.FindChild ("ex").gameObject.SetActive (true);
+		transform.parent.FindChild ("bot").gameObject.SetActive (true);
+		g.transform.parent.FindChild ("dim").gameObject.SetActive (false);
+		g.transform.parent.parent.GetComponent<RectMask2D> ().enabled = true;
+		g.transform.GetChild (0).GetComponent<PinchZoomandview> ().enabled = false;
+		if (g.transform.parent.parent.name == "sub") {
+			ES = Status.stage1_1;
+		} else {
+			ES = Status.stage4_1;
+		}
+		FirstScreenSizeSetting.Instance.dad.Dimoff ();
+		//g.transform.SetSiblingIndex (3);
 	}
 	void setname(int i){
 		string s = "";
@@ -484,7 +536,7 @@ public class bestwar : MonoBehaviour {
 	GameObject TempG(){
 		GameObject Tempimage = Instantiate (sub.transform.FindChild ("wg").FindChild("mask").gameObject) as GameObject;
 		Tempimage.transform.SetParent (sub.transform.FindChild ("wg").FindChild("mask").transform.parent);
-		Tempimage.transform.SetSiblingIndex (Tempimage.transform.parent.childCount-3);
+		Tempimage.transform.SetSiblingIndex (Tempimage.transform.parent.childCount-4);
 		Tempimage.transform.localScale = new Vector3 (1,1,1);
 
 		Tempimage.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (V.x,0);
@@ -494,7 +546,7 @@ public class bestwar : MonoBehaviour {
 	GameObject TempG4(){
 		GameObject Tempimage = Instantiate (sub4.transform.FindChild ("wg").FindChild("mask").gameObject) as GameObject;
 		Tempimage.transform.SetParent (sub4.transform.FindChild ("wg").FindChild("mask").transform.parent);
-		Tempimage.transform.SetSiblingIndex (Tempimage.transform.parent.childCount-3);
+		Tempimage.transform.SetSiblingIndex (Tempimage.transform.parent.childCount-4);
 		Tempimage.transform.localScale = new Vector3 (1,1,1);
 
 		Tempimage.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (V.x,0);
@@ -518,6 +570,7 @@ public class bestwar : MonoBehaviour {
 
 			Tg.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
 			Tg.SetActive (true);
+
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(V.x,0),Tg,0.1f,"M2",this.gameObject,Tg);
 		}
 
@@ -531,9 +584,10 @@ public class bestwar : MonoBehaviour {
 		sub.transform.FindChild ("wg").FindChild ("L").GetComponent<Image> ().raycastTarget = true;
 		sub.transform.FindChild ("wg").FindChild ("R").GetComponent<Image> ().raycastTarget = true;
 
-
+	
 
 	}
+
 	public void R(){
 
 		status++;
@@ -547,6 +601,7 @@ public class bestwar : MonoBehaviour {
 			//				sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;
 			//			sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = false;
 			Tg.gameObject.SetActive (true);
+	
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,0),Tg,0.1f,"M2",this.gameObject,Tg);
 		}
 
@@ -570,6 +625,7 @@ public class bestwar : MonoBehaviour {
 
 			Tg.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
 			Tg.SetActive (true);
+		
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(V.x,0),Tg,0.1f,"M24",this.gameObject,Tg);
 		}
 
@@ -583,7 +639,7 @@ public class bestwar : MonoBehaviour {
 		sub4.transform.FindChild ("wg").FindChild ("L").GetComponent<Image> ().raycastTarget = true;
 		sub4.transform.FindChild ("wg").FindChild ("R").GetComponent<Image> ().raycastTarget = true;
 
-
+	
 
 	}
 	public void R4(){
@@ -599,6 +655,7 @@ public class bestwar : MonoBehaviour {
 			//				sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;
 			//			sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = false;
 			Tg.gameObject.SetActive (true);
+
 			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,0),Tg,0.1f,"M24",this.gameObject,Tg);
 		}
 
@@ -676,7 +733,16 @@ public class bestwar : MonoBehaviour {
 			FirstScreenSizeSetting.Instance.dad.Dimoff ();
 			ES = Status.stage4;
 			close4 ();
-		} else {
+		} else if (ES == Status.stage1_1_1) {
+
+			reduce (sub.transform.FindChild("wg").FindChild("mask").gameObject);
+
+	
+		} else if (ES == Status.stage4_1_1) {
+
+			reduce (sub4.transform.FindChild("wg").FindChild("mask").gameObject);
+
+		}else {
 			StopAllCoroutines ();
 	
 			transform.parent.FindChild ("bot").gameObject.SetActive (false);

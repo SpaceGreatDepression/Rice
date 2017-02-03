@@ -33,6 +33,17 @@ public class AndroidManager : MonoBehaviour {
 		FirstScreenSizeSetting.Instance.sd.value = (float)nowvolume;
 		FirstScreenSizeSetting.Instance.sd.enabled = true;
 	}
+	void back(string arg){
+		Debug.Log ("arg");
+		FirstScreenSizeSetting.Instance.back ();
+	}
+	public void Vg(){
+		_a.Call ("getvolume");
+	}
+	void getnowvolume(string arg){
+		nowvolume = int.Parse (arg);
+		Debug.Log ("nowvolume1 : " + nowvolume);
+	}
 	public void Vup(){
 		_a.Call ("volumeup");
 	}
@@ -42,11 +53,13 @@ public class AndroidManager : MonoBehaviour {
 
 	void volumeup(string arg){
 		nowvolume = int.Parse (arg);
+		FirstScreenSizeSetting.Instance.sd.value = (float)nowvolume;
 		Debug.Log ("nowvolume2 : " + nowvolume);
 	}
 
 	void volumedown(string arg){
 		nowvolume = int.Parse (arg);
+		FirstScreenSizeSetting.Instance.sd.value = (float)nowvolume;
 		Debug.Log ("nowvolume3 : " + nowvolume);
 	}
 	void AndroidLog(string arg){
