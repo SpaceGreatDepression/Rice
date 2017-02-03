@@ -67,7 +67,6 @@
      <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\playlist_jstree.xml" />
      <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\playlist.xml" />
      <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\README.txt" />
-     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\vlm.xml" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\playlist_jstree.xml" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\vlm_cmd.xml" />
@@ -78,6 +77,7 @@
      <None Include="Assets\Simple Sprite Packer\Changelog.txt" />
      <None Include="Assets\Simple Sprite Packer\readme.txt" />
      <None Include="Assets\MPMP\Examples\Materials\Resources\UnlitAlphaMask.shader" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\MPMP\Examples\Materials\Resources\GammaCorrectionUnlit.shader" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\status.xml" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\playlist.xml" />

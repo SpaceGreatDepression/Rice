@@ -253,12 +253,12 @@ public class bestpractice : MonoBehaviour {
 		FirstScreenSizeSetting.Instance.memory ();
 		switch (s) {
 		case "01_01_school02":
-			count = 14;
+			count = 13;
 			break;
 		case "01_02_school04":
 		case "01_02_school03":
 		case "01_01_school03":
-			count = 15;
+			count = 14;
 			break;
 		case "01_03_school02":
 		case "01_03_school01":
@@ -266,7 +266,7 @@ public class bestpractice : MonoBehaviour {
 		case "01_02_school01":
 		case "01_02_school02":			
 		case "01_02_school05":
-			count = 16;
+			count = 15;
 			break;
 		}
 		cha = "";

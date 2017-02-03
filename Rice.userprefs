@@ -1,25 +1,25 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SampleWebView.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/MPMP/Scripts/MPMP.cs">
     <Files>
-      <File FileName="Assets/Script/dimanddim/dimanddim.cs" Line="16" Column="3" />
-      <File FileName="Assets/Script/Mainpage/Mainpage.cs" Line="40" Column="29" />
-      <File FileName="Assets/Script/bestwar/bestwar.cs" Line="35" Column="7" />
-      <File FileName="Assets/SampleWebView.cs" Line="29" Column="2" />
-      <File FileName="Assets/Script/bestpractice/bestpractice.cs" Line="307" Column="92" />
-      <File FileName="Assets/Script/FirstScreenSizeSetting.cs" Line="479" Column="25" />
+      <File FileName="Assets/Script/AndroidManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/dimanddim/dimanddim.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/Mainpage/Mainpage.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/bestwar/bestwar.cs" Line="1" Column="1" />
+      <File FileName="Assets/SampleWebView.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/bestpractice/bestpractice.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/FirstScreenSizeSetting.cs" Line="1" Column="1" />
       <File FileName="Assets/Plugins/Android/Editor/UnityWebViewPostprocessBuild.cs" Line="1" Column="1" />
-      <File FileName="Assets/Plugins/Android/AndroidManifest.xml" Line="14" Column="12" />
+      <File FileName="Assets/Plugins/Android/AndroidManifest.xml" Line="1" Column="1" />
       <File FileName="Assets/MPMP/Scripts/MPMP_API.cs" Line="1" Column="1" />
-      <File FileName="Assets/Script/PinchZoomandview.cs" Line="159" Column="18" />
+      <File FileName="Assets/Script/PinchZoomandview.cs" Line="1" Column="1" />
       <File FileName="Assets/MPMP/Scripts/GUI/MPMP_ugui_Element.cs" Line="1" Column="1" />
-      <File FileName="Assets/MPMP/Scripts/MPMP.cs" Line="1" Column="1" />
-      <File FileName="Assets/Script/futurerice/futurerice.cs" Line="79" Column="92" />
+      <File FileName="Assets/MPMP/Scripts/MPMP.cs" Line="385" Column="4" />
+      <File FileName="Assets/Script/futurerice/futurerice.cs" Line="1" Column="1" />
       <File FileName="Assets/Script/LetterSpacing.cs" Line="1" Column="1" />
       <File FileName="../Desktop/tower101_and/Assets/Script/StatusController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Script/Loding/Loding.cs" Line="18" Column="41" />
-      <File FileName="Assets/AndroidManager.cs" Line="15" Column="2" />
-      <File FileName="Assets/Script/adder.cs" Line="11" Column="2" />
+      <File FileName="Assets/Script/Loding/Loding.cs" Line="1" Column="1" />
+      <File FileName="Assets/AndroidManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

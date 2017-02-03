@@ -19,6 +19,9 @@ public class FirstScreenSizeSetting : MonoBehaviour {
 
 	public Loding LD;
 	public dimanddim dad;
+	public AndroidManager AD;
+	public monoflow.MPMP_ugui_Element MPMPE;
+	public Slider sd;
 	public void kipbackevent(BackEvent B){
 		EventAction = () => B ();
 	}

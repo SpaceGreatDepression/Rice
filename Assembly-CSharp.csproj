@@ -46,7 +46,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AndroidManager.cs" />
      <Compile Include="Assets\MPMP\Examples\Scripts\Rotater.cs" />
      <Compile Include="Assets\MPMP\Scripts\GUI\MPMP_ugui_Element.cs" />
      <Compile Include="Assets\MPMP\Scripts\GUI\MPMP_ugui_Host.cs" />
@@ -63,12 +62,12 @@
      <Compile Include="Assets\MPMP\Scripts\MPMP_VR_Setup.cs" />
      <Compile Include="Assets\MPMP\Scripts\MPMP_VideoSynchronizer.cs" />
      <Compile Include="Assets\SampleWebView.cs" />
+     <Compile Include="Assets\Script\AndroidManager.cs" />
      <Compile Include="Assets\Script\FirstScreenSizeSetting.cs" />
      <Compile Include="Assets\Script\LetterSpacing.cs" />
      <Compile Include="Assets\Script\Loding\Loding.cs" />
      <Compile Include="Assets\Script\Mainpage\Mainpage.cs" />
      <Compile Include="Assets\Script\PinchZoomandview.cs" />
-     <Compile Include="Assets\Script\adder.cs" />
      <Compile Include="Assets\Script\bestpractice\bestpractice.cs" />
      <Compile Include="Assets\Script\bestwar\bestwar.cs" />
      <Compile Include="Assets\Script\dimanddim\dimanddim.cs" />
@@ -83,7 +82,6 @@
      <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\playlist_jstree.xml" />
      <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\playlist.xml" />
      <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\README.txt" />
-     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\vlm.xml" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\playlist_jstree.xml" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\vlm_cmd.xml" />
@@ -94,6 +92,7 @@
      <None Include="Assets\Simple Sprite Packer\Changelog.txt" />
      <None Include="Assets\Simple Sprite Packer\readme.txt" />
      <None Include="Assets\MPMP\Examples\Materials\Resources\UnlitAlphaMask.shader" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\MPMP\Examples\Materials\Resources\GammaCorrectionUnlit.shader" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\status.xml" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\playlist.xml" />

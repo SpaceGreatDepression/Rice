@@ -8,6 +8,22 @@ public class Mainpage : MonoBehaviour {
 	float topgap = 0;
 	Vector2 V = new Vector2(0,0);
 	Vector2 Ori = new Vector2(0,0);
+	IEnumerator Start(){
+		yield return new WaitForSeconds (2f);
+		while (true) {
+			for (int i = 0; i < mid.transform.childCount; i++) {
+				mid.transform.GetChild (i).GetComponent<Image> ().color += new Color (0,0,0,0.02f);
+			}
+			if (mid.transform.GetChild (0).GetComponent<Image> ().color.a >= 1) {
+				for (int i = 0; i < mid.transform.childCount; i++) {
+					mid.transform.GetChild (i).GetComponent<Image> ().color = new Color (1,1,1,1);
+					mid.transform.GetChild (i).GetComponent<Image> ().raycastTarget = true;
+				}
+				break;
+			}
+			yield return new WaitForFixedUpdate ();
+		}
+	}
 	void Awake2(){
 
 		if (V.x == 0) {
@@ -122,7 +138,7 @@ public class Mainpage : MonoBehaviour {
 	bool modeq = false;
 	IEnumerator popupon(){
 		modeq = true;
-		for (float i = 0; i < 1; i+=0.05f) {
+		for (float i = 0; i < 1; i+=0.1f) {
 			popup.GetComponent<Image> ().color = new Color (1,1,1,i);
 			yield return new WaitForSeconds (0.05f);
 		}

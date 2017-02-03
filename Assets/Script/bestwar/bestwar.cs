@@ -299,25 +299,29 @@ public class bestwar : MonoBehaviour {
 	public void pausebutton(){
 		sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Seek").FindChild ("playerbg").FindChild ("pause").FindChild ("play").gameObject.SetActive (true);
 	}
-	float savev;
+	int savev;
 	public void soff(){
 		//Debug.Log ("off");
 		sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").FindChild ("soff").FindChild ("son").gameObject.SetActive (true);
-		sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider>().value = savev;
-		sub2.transform.FindChild ("wg").GetComponent<monoflow.MPMP_ugui_Element> ().player.volume = savev;
+		FirstScreenSizeSetting.Instance.AD.Vset (savev);
+		//sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider>().value = savev;
+		//sub2.transform.FindChild ("wg").GetComponent<monoflow.MPMP_ugui_Element> ().player.volume = savev;
 	}
 	public void son(){
 
 		sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").FindChild ("soff").FindChild ("son").gameObject.SetActive (false);
-		savev = sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider>().value;
-		sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider>().value  = 0;
-		sub2.transform.FindChild ("wg").GetComponent<monoflow.MPMP_ugui_Element> ().player.volume = 0;
+		savev = (int)sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider>().value;
+
+		FirstScreenSizeSetting.Instance.AD.Vset (0);
+	//	sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider>().value  = 0;
+	//	sub2.transform.FindChild ("wg").GetComponent<monoflow.MPMP_ugui_Element> ().player.volume = 0;
 	//	Debug.Log ("on" + sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider>().value);
 	}
 	public void onvc(){
 		//Debug.Log ("obvc");
 	//	Debug.Log ("onvc"+ sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider>().value);
 		//if (sub2.transform.FindChild ("wg").GetComponent<monoflow.MPMP_ugui_Element> ().player.volume == 0) {
+		FirstScreenSizeSetting.Instance.AD.Vset ((int)sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider> ().value);
 		if (sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").GetComponent<Slider> ().value == 0) {
 			sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Volume").FindChild ("soff").FindChild ("son").gameObject.SetActive (false);
 		} else {
