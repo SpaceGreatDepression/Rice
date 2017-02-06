@@ -384,34 +384,34 @@ public class bestwar : MonoBehaviour {
 		string s = "";
 		switch (i) {
 		case 0:
-			s = "진주남강초등학교";
+			s = "진주 남강초등학교";
 			break;
 		case 1:
-			s = "울산동백초등학교";
+			s = "울산 동백초등학교";
 			break;
 		case 2:
-			s = "홍성덕명초등학교";
+			s = "홍성 덕명초등학교";
 			break;
 		case 3:
-			s = "옥천장야초등학교";
+			s = "옥천 장야초등학교";
 			break;
 		case 4:
-			s = "예산대술초등학교";
+			s = "예산 대술초등학교";
 			break;
 		case 5:
-			s = "구례광의초등학교";
+			s = "구례 광의초등학교";
 			break;
 		case 6:
-			s = "인천공촌초등학교";
+			s = "인천 공촌초등학교";
 			break;
 		case 7:
-			s = "춘천신동초등학교";
+			s = "춘천 신동초등학교";
 			break;
 		case 8:
-			s = "대전용산초등학교";
+			s = "대전 용산초등학교";
 			break;
 		case 9:
-			s = "대전삼천초등학교";
+			s = "대전 삼천초등학교";
 			break;
 		}
 		sub.transform.FindChild ("wg").FindChild ("textb").GetChild (0).GetComponent<Text> ().text = s;
@@ -452,7 +452,7 @@ public class bestwar : MonoBehaviour {
 			break;
 		case 10:
 			sub4.transform.FindChild ("wg").FindChild ("textb").GetChild (0).GetComponent<LetterSpacing> ().spacing = -2;
-			s = "최우수상 - 대전 용상초등학교";
+			s = "최우수상 - 대전 용산초등학교";
 			break;
 		case 11:
 			sub4.transform.FindChild ("wg").FindChild ("textb").GetChild (0).GetComponent<LetterSpacing> ().spacing = -2;
@@ -561,6 +561,7 @@ public class bestwar : MonoBehaviour {
 
 		}
 		setname (status);
+		Debug.Log ("L : " + status);
 		if (sub.transform.FindChild ("wg").FindChild("mask").GetChild(0).GetComponent<Image> ().sprite != tempsp [status]) {
 			GameObject Tg = TempG ();
 			sub.transform.FindChild ("wg").FindChild("mask").GetChild(0).GetComponent<Image> ().sprite = tempsp [status];
@@ -577,7 +578,11 @@ public class bestwar : MonoBehaviour {
 	}
 	void M2(object o){
 		GameObject O = (GameObject)o;
-		sub.transform.FindChild ("wg").FindChild("mask").GetChild(0).GetComponent<Image> ().sprite = tempsp [status];
+	
+		if (sub.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite != tempsp [status]) {
+			
+			sub.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite = tempsp [status];
+		}
 		Tlist.Remove (O);
 		Destroy (O);
 
@@ -591,11 +596,13 @@ public class bestwar : MonoBehaviour {
 	public void R(){
 
 		status++;
-		if (status >=9) {
+		if (status >=10) {
 			status = 0;
 		}
+
 		setname (status);
 		if (sub.transform.FindChild ("wg").FindChild("mask").GetChild(0).GetComponent<Image> ().sprite != tempsp [status]) {
+			Debug.Log ("R : " + status);
 			GameObject Tg = TempG ();
 			Tg.transform.GetChild(0).GetComponent<Image> ().sprite = tempsp [status];
 			//				sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;

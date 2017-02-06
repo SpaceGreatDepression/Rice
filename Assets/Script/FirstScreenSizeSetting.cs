@@ -329,7 +329,7 @@ public class FirstScreenSizeSetting : MonoBehaviour {
 		Vector2 a = ab.a;
 		Vector2 b = ab.b;
 		RectTransform t = ab.t;
-		Debug.Log (a + " : " + b);
+	//	Debug.Log (a + " : " + b);
 		string m = ab.m;
 		GameObject g = ab.g;
 		object o = ab.o;
@@ -423,6 +423,7 @@ public class FirstScreenSizeSetting : MonoBehaviour {
 				G.GetComponent<Image> ().color += new Color (0,0,0,num);
 				yield return new WaitForFixedUpdate ();
 			}
+			G.GetComponent<Image> ().color = new Color (G.GetComponent<Image> ().color.r,G.GetComponent<Image> ().color.g,G.GetComponent<Image> ().color.b,end);
 			if (c.o == null) {
 				g.SendMessage (m);
 			} else {
@@ -438,6 +439,7 @@ public class FirstScreenSizeSetting : MonoBehaviour {
 				G.GetComponent<Image> ().color -= new Color (0,0,0,num);
 				yield return new WaitForFixedUpdate ();
 			}
+			G.GetComponent<Image> ().color = new Color (G.GetComponent<Image> ().color.r,G.GetComponent<Image> ().color.g,G.GetComponent<Image> ().color.b,end);
 			if (c.o == null) {
 				g.SendMessage (m);
 			} else {
