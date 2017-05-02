@@ -46,6 +46,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AssetBundleManager\Editor\AssetbundlesMenuItems.cs" />
+     <Compile Include="Assets\AssetBundleManager\Editor\BuildScript.cs" />
+     <Compile Include="Assets\AssetBundleManager\Editor\ExecuteInternalMono.cs" />
+     <Compile Include="Assets\AssetBundleManager\Editor\LaunchAssetBundleServer.cs" />
      <Compile Include="Assets\MPMP\Examples\Scripts\Editor\MPMP_VR_SetupEditor.cs" />
      <Compile Include="Assets\MPMP\Scripts\Editor\EnableOpenGLES2.cs" />
      <Compile Include="Assets\MPMP\Scripts\Editor\MPMPEditor.cs" />
@@ -65,21 +69,32 @@
      <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\browse.xml" />
      <None Include="Assets\MPMP\Examples\Materials\Resources\GammaCorrectionSurface.shader" />
      <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\playlist_jstree.xml" />
+     <None Include="Assets\Plugins\Android\UnityOBBDownloader\res\layout-v11\status_bar_ongoing_event_progress_bar.xml" />
      <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\playlist.xml" />
+     <None Include="Assets\Plugins\Android\UnityOBBDownloader\res\values\strings.xml" />
      <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\README.txt" />
+     <None Include="Assets\Plugins\Android\UnityOBBDownloader\res\values-v9\styles.xml" />
+     <None Include="Assets\Plugins\Android\UnityOBBDownloader\AndroidManifest.xml" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\vlm.xml" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\playlist_jstree.xml" />
+     <None Include="Assets\Plugins\Android\UnityOBBDownloader\res\layout\status_bar_ongoing_event_progress_bar.xml" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\vlm_cmd.xml" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\browse.xml" />
+     <None Include="Assets\Plugins\Android\UnityOBBDownloader\build.xml" />
      <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\status.xml" />
+     <None Include="Assets\Plugins\Android\UnityOBBDownloader\res\layout\main.xml" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\README.txt" />
      <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\vlm.xml" />
      <None Include="Assets\Simple Sprite Packer\Changelog.txt" />
+     <None Include="Assets\README.txt" />
      <None Include="Assets\Simple Sprite Packer\readme.txt" />
      <None Include="Assets\MPMP\Examples\Materials\Resources\UnlitAlphaMask.shader" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\MPMP\Examples\Materials\Resources\GammaCorrectionUnlit.shader" />
+     <None Include="Assets\Plugins\Android\UnityOBBDownloader\res\values-v11\styles.xml" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\status.xml" />
+     <None Include="Assets\Plugins\Android\UnityOBBDownloader\res\values\main-strings.xml" />
+     <None Include="Assets\Plugins\Android\UnityOBBDownloader\res\values\styles.xml" />
      <None Include="Assets\MPMP\Plugins\x86\lua\http\requests\playlist.xml" />
      <None Include="Assets\MPMP\Plugins\x86_64\lua\http\requests\vlm_cmd.xml" />
  <Reference Include="UnityEditor.Advertisements">

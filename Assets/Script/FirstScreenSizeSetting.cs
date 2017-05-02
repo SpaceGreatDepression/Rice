@@ -296,10 +296,58 @@ public class FirstScreenSizeSetting : MonoBehaviour {
 		transform.GetChild (0).FindChild ("dimanddim").GetComponent<dimanddim> ().setting (Size);
 
 	}
+//	public Sprite getsprite(string path){
+//
+//		Sprite Sprite1 = Resources.Load<Sprite> (path);
+//		return Sprite1;
+//	}
 	public Sprite getsprite(string path){
-		
+
 		Sprite Sprite1 = Resources.Load<Sprite> (path);
 		return Sprite1;
+	}
+	public void getsprites(string strItemName,GameObject target,string sand){
+
+		StartCoroutine (LoadItem(strItemName,target,sand));
+	
+	}
+	IEnumerator LoadItem(string strItemName,GameObject target,string sand)
+	{
+		string expPath = GooglePlayDownloader.GetExpansionFilePath();
+		string mainPath = GooglePlayDownloader.GetMainOBBPath(expPath);
+
+		string uri = string.Empty;
+		uri = "jar:file://" + mainPath + "!/" + strItemName;
+		//uri =  "file://Users/choi-Yfactory/Rice/AssetBundles/Android/" + strItemName;
+		Debug.Log("downloading " + uri);
+		WWW www = WWW.LoadFromCacheOrDownload(uri, 0);
+
+		// Wait for download to complete
+		yield return www;
+
+		if (www.error != null)
+		{
+			Debug.Log("wwww error " + www.error);
+		}
+		else
+		{
+			AssetBundle assetBundle = www.assetBundle;
+			string[] s = assetBundle.GetAllAssetNames ();
+			for (int i = 0; i < s.Length; i++) {
+				Debug.Log("1 : " + s[i]);
+			}
+			Sprite[] gameObj = assetBundle.LoadAllAssets<Sprite>();
+//			Debug.Log (gameObj.Length + "!!");
+//			List<Sprite> LSp = new List<Sprite> ();
+//			for (int i = 0; i < gameObj.Length; i++) {
+//				LSp.Add (gameObj[i] as Sprite);
+//			}
+			Debug.Log (sand + "!sand!");
+			target.SendMessage (sand,(object)gameObj);
+
+			assetBundle.Unload(false);
+			www.Dispose();
+		}
 	}
 	public void memory(){
 		Resources.UnloadUnusedAssets ();

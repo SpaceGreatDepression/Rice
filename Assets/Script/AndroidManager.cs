@@ -35,7 +35,11 @@ public class AndroidManager : MonoBehaviour {
 	}
 	void back(string arg){
 		Debug.Log ("arg");
-		FirstScreenSizeSetting.Instance.back ();
+		if (Application.loadedLevelName == "rice") {
+			FirstScreenSizeSetting.Instance.back ();
+		} else {
+			GameObject.Find ("DownloadObbExample").GetComponent<DownloadObbExample> ().pop2c ();
+		}
 	}
 	public void Vg(){
 		_a.Call ("getvolume");

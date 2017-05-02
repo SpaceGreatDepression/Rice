@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
-
+using System.Linq;
 public class bestwar : MonoBehaviour {
 	public GameObject Bg,top,mid,sub,sub2,sub4;
 	// Use this for initialization
@@ -104,24 +104,14 @@ public class bestwar : MonoBehaviour {
 	Status ES = Status.stage0;
 	public void stage1(){
 		FirstScreenSizeSetting.Instance.dad.Dimon ();
-		StartCoroutine ("stage1lod");
+		stage1lod ();
 	}
-	IEnumerator stage1lod(){
-		FirstScreenSizeSetting.Instance.LD.StartLoding ();
-		for (int i = 1; i < 11; i++) {
-			string path;
-			if (i == 10) {
-				path = "sources/menu02/02_01/02_01_" + i.ToString ();
-			} else {
-				path = "sources/menu02/02_01/02_01_0" + i.ToString ();
-			}
 
-			tempsp.Add (FirstScreenSizeSetting.Instance.getsprite (path));
-			Debug.Log (tempsp [i - 1].name);
-			yield return new WaitForFixedUpdate ();
-		}
+	char[] ch;
+	void getsprits1(object o){
+		Sprite[] S = o as Sprite[];
+		tempsp = S.ToList ();
 		sub.transform.FindChild ("dim").gameObject.SetActive (false);
-		yield return new WaitForSeconds (0.1f);
 		sub.SetActive (true);
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("Ts").gameObject,0,1,0.75f,"C1",this.gameObject);
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild("mt").gameObject,1,0,0.75f,"C1",this.gameObject);
@@ -130,6 +120,14 @@ public class bestwar : MonoBehaviour {
 		sub.transform.FindChild ("dim").gameObject.SetActive (true);
 		ES = Status.stage1;
 		FirstScreenSizeSetting.Instance.LD.EndLoding();
+
+	}
+	void stage1lod(){
+		FirstScreenSizeSetting.Instance.LD.StartLoding ();
+		Lcount = 0;
+		Rcount = 0;
+		FirstScreenSizeSetting.Instance.getsprites ("02_01",this.gameObject,"getsprits1");
+
 	}
 	bool dataload = true;
 	public void stage2(){
@@ -159,24 +157,13 @@ public class bestwar : MonoBehaviour {
 	}
 	public void stage4(){
 		FirstScreenSizeSetting.Instance.dad.Dimon ();
-		StartCoroutine ("stage4lod");
+		stage4lod ();
 	}
-	IEnumerator stage4lod(){
-		FirstScreenSizeSetting.Instance.LD.StartLoding ();
-		for (int i = 1; i < 15; i++) {
-			string path;
-			if (i >= 10) {
-				path = "sources/menu02/02_04/02_04_" + i.ToString ();
-			} else {
-				path = "sources/menu02/02_04/02_04_0" + i.ToString ();
-			}
-
-			tempsp.Add (FirstScreenSizeSetting.Instance.getsprite (path));
-			Debug.Log (tempsp [i - 1].name);
-		}
+	void getsprits4(object o){
+		Sprite[] S = o as Sprite[];
+		tempsp = S.ToList ();
 		sub4.transform.FindChild ("dim").gameObject.SetActive (false);
-	
-		yield return new WaitForSeconds (0.1f);
+
 		sub4.SetActive (true);
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild ("Ts4").gameObject,0,1,0.75f,"C1",this.gameObject);
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild("mt").gameObject,1,0,0.75f,"C1",this.gameObject);
@@ -185,6 +172,13 @@ public class bestwar : MonoBehaviour {
 		sub4.transform.FindChild ("dim").gameObject.SetActive (true);
 		ES = Status.stage4;
 		FirstScreenSizeSetting.Instance.LD.EndLoding();
+
+	}
+	void stage4lod(){
+		FirstScreenSizeSetting.Instance.LD.StartLoding ();
+		Lcount4 = 0;
+		Rcount4 = 0;
+		FirstScreenSizeSetting.Instance.getsprites ("02_04",this.gameObject,"getsprits4");
 	}
 
 	public void items2(int i){
@@ -296,6 +290,9 @@ public class bestwar : MonoBehaviour {
 
 		setname (status);
 	}
+
+
+
 	public void playbutton(){
 		sub2.transform.FindChild ("wg").FindChild ("player").FindChild ("Slider.Seek").FindChild ("playerbg").FindChild ("pause").FindChild ("play").gameObject.SetActive (false);
 	}
@@ -554,34 +551,37 @@ public class bestwar : MonoBehaviour {
 		return Tempimage;
 	}
 	public void L(){
+		if (Rcount == 0) {
+			status--;
+			if (status < 0) {
+				status = 9;
 
-		status--;
-		if (status < 0) {
-			status = 9;
-
-		}
-		setname (status);
-		Debug.Log ("L : " + status);
-		if (sub.transform.FindChild ("wg").FindChild("mask").GetChild(0).GetComponent<Image> ().sprite != tempsp [status]) {
-			GameObject Tg = TempG ();
-			sub.transform.FindChild ("wg").FindChild("mask").GetChild(0).GetComponent<Image> ().sprite = tempsp [status];
-			//			sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;
-			//			sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = false;
+			}
+			setname (status);
+			Debug.Log ("L : " + status);
+			if (sub.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite != tempsp [status]) {
+				GameObject Tg = TempG ();
+				sub.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite = tempsp [status];
+				//			sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;
+				//			sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = false;
 
 
-			Tg.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
-			Tg.SetActive (true);
+				Tg.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 0);
+				Tg.SetActive (true);
 
-			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(V.x,0),Tg,0.1f,"M2",this.gameObject,Tg);
+				FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2 (V.x, 0), Tg, 0.1f, "M2l", this.gameObject, Tg);
+				Lcount++;
+			}
 		}
 
 	}
-	void M2(object o){
+	void M2l(object o){
 		GameObject O = (GameObject)o;
-	
+
 		if (sub.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite != tempsp [status]) {
-			
-			sub.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite = tempsp [status];
+
+			sub.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite = O.transform.GetChild(0).GetComponent<Image>().sprite;
+
 		}
 		Tlist.Remove (O);
 		Destroy (O);
@@ -589,83 +589,128 @@ public class bestwar : MonoBehaviour {
 		sub.transform.FindChild ("wg").FindChild ("L").GetComponent<Image> ().raycastTarget = true;
 		sub.transform.FindChild ("wg").FindChild ("R").GetComponent<Image> ().raycastTarget = true;
 
-	
+		Lcount--;
 
 	}
+	void M2r(object o){
+		GameObject O = (GameObject)o;
 
+		if (sub.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite != tempsp [status]) {
+
+			sub.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite = O.transform.GetChild(0).GetComponent<Image>().sprite;
+
+		}
+		Tlist.Remove (O);
+		Destroy (O);
+
+		sub.transform.FindChild ("wg").FindChild ("L").GetComponent<Image> ().raycastTarget = true;
+		sub.transform.FindChild ("wg").FindChild ("R").GetComponent<Image> ().raycastTarget = true;
+		Rcount--;
+
+
+	}
+	int Lcount = 0;
+	int Rcount = 0;
 	public void R(){
+		if (Lcount == 0) {
+			status++;
+			if (status >= 10) {
+				status = 0;
+			}
 
-		status++;
-		if (status >=10) {
-			status = 0;
-		}
-
-		setname (status);
-		if (sub.transform.FindChild ("wg").FindChild("mask").GetChild(0).GetComponent<Image> ().sprite != tempsp [status]) {
-			Debug.Log ("R : " + status);
-			GameObject Tg = TempG ();
-			Tg.transform.GetChild(0).GetComponent<Image> ().sprite = tempsp [status];
-			//				sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;
-			//			sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = false;
-			Tg.gameObject.SetActive (true);
+			setname (status);
+			if (sub.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite != tempsp [status]) {
+				Debug.Log ("R : " + status);
+				GameObject Tg = TempG ();
+				Tg.transform.GetChild (0).GetComponent<Image> ().sprite = tempsp [status];
+				//				sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;
+				//			sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = false;
+				Tg.gameObject.SetActive (true);
 	
-			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,0),Tg,0.1f,"M2",this.gameObject,Tg);
+				FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2 (0, 0), Tg, 0.1f, "M2r", this.gameObject, Tg);
+				Rcount++;
+			}
+
+
 		}
-
-
-
 	}
 	public void L4(){
+		if (Rcount4 == 0) {
+			status--;
+			if (status < 0) {
+				status = 13;
 
-		status--;
-		if (status < 0) {
-			status = 13;
-
-		}
-		setname4 (status);
-		if (sub4.transform.FindChild ("wg").FindChild("mask").GetChild(0).GetComponent<Image> ().sprite != tempsp [status]) {
-			GameObject Tg = TempG4 ();
-			sub4.transform.FindChild ("wg").FindChild("mask").GetChild(0).GetComponent<Image> ().sprite = tempsp [status];
-			//			sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;
-			//			sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = false;
+			}
+			setname4 (status);
+			if (sub4.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite != tempsp [status]) {
+				GameObject Tg = TempG4 ();
+				sub4.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite = tempsp [status];
+				//			sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;
+				//			sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = false;
 
 
-			Tg.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
-			Tg.SetActive (true);
+				Tg.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 0);
+				Tg.SetActive (true);
 		
-			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(V.x,0),Tg,0.1f,"M24",this.gameObject,Tg);
+				FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2 (V.x, 0), Tg, 0.1f, "M24l", this.gameObject, Tg);
+				Lcount4++;
+			}
 		}
-
 	}
-	void M24(object o){
+	void M24l(object o){
 		GameObject O = (GameObject)o;
-		sub4.transform.FindChild ("wg").FindChild("mask").GetChild(0).GetComponent<Image> ().sprite = tempsp [status];
+
+		if (sub4.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite != tempsp [status]) {
+
+			sub4.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite = O.transform.GetChild(0).GetComponent<Image>().sprite;
+
+		}
 		Tlist.Remove (O);
 		Destroy (O);
 
 		sub4.transform.FindChild ("wg").FindChild ("L").GetComponent<Image> ().raycastTarget = true;
 		sub4.transform.FindChild ("wg").FindChild ("R").GetComponent<Image> ().raycastTarget = true;
 
-	
+		Lcount4--;
 
 	}
+	void M24r(object o){
+		GameObject O = (GameObject)o;
+
+		if (sub4.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite != tempsp [status]) {
+
+			sub4.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite = O.transform.GetChild(0).GetComponent<Image>().sprite;
+
+		}
+		Tlist.Remove (O);
+		Destroy (O);
+
+		sub4.transform.FindChild ("wg").FindChild ("L").GetComponent<Image> ().raycastTarget = true;
+		sub4.transform.FindChild ("wg").FindChild ("R").GetComponent<Image> ().raycastTarget = true;
+
+		Rcount4--;
+
+	}
+	int Lcount4 = 0;
+	int Rcount4 = 0;
 	public void R4(){
+		if (Lcount4 == 0) {
+			status++;
+			if (status > 13) {
+				status = 0;
+			}
+			setname4 (status);
+			if (sub4.transform.FindChild ("wg").FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite != tempsp [status]) {
+				GameObject Tg = TempG4 ();
+				Tg.transform.GetChild (0).GetComponent<Image> ().sprite = tempsp [status];
+				//				sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;
+				//			sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = false;
+				Tg.gameObject.SetActive (true);
 
-		status++;
-		if (status > 13) {
-			status = 0;
+				FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2 (0, 0), Tg, 0.1f, "M24r", this.gameObject, Tg);
+				Rcount4++;
+			}
 		}
-		setname4 (status);
-		if (sub4.transform.FindChild ("wg").FindChild("mask").GetChild(0).GetComponent<Image> ().sprite != tempsp [status]) {
-			GameObject Tg = TempG4 ();
-			Tg.transform.GetChild(0).GetComponent<Image> ().sprite = tempsp [status];
-			//				sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;
-			//			sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = false;
-			Tg.gameObject.SetActive (true);
-
-			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,0),Tg,0.1f,"M24",this.gameObject,Tg);
-		}
-
 
 
 	}

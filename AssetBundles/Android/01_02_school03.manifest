@@ -1,0 +1,31 @@
+ManifestFileVersion: 0
+CRC: 738461453
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 472388ed2de21b63b8967c0246fe5c57
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 4d24bf54f46935ed9e6cf78ac481bb9d
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/sources/menu01/01_02_school03/01_02_school03_05.jpg
+- Assets/Resources/sources/menu01/01_02_school03/01_02_school03_13.jpg
+- Assets/Resources/sources/menu01/01_02_school03/01_02_school03_02.jpg
+- Assets/Resources/sources/menu01/01_02_school03/01_02_school03_09.jpg
+- Assets/Resources/sources/menu01/01_02_school03/01_02_school03_12.jpg
+- Assets/Resources/sources/menu01/01_02_school03/01_02_school03_14.jpg
+- Assets/Resources/sources/menu01/01_02_school03/01_02_school03_03.jpg
+- Assets/Resources/sources/menu01/01_02_school03/01_02_school03_10.jpg
+- Assets/Resources/sources/menu01/01_02_school03/01_02_school03_11.jpg
+- Assets/Resources/sources/menu01/01_02_school03/01_02_school03_04.jpg
+- Assets/Resources/sources/menu01/01_02_school03/01_02_school03_07.jpg
+- Assets/Resources/sources/menu01/01_02_school03/01_02_school03_08.jpg
+- Assets/Resources/sources/menu01/01_02_school03/01_02_school03_06.jpg
+- Assets/Resources/sources/menu01/01_02_school03/01_02_school03_01.jpg
+Dependencies: []

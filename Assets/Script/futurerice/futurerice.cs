@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
 public class futurerice : MonoBehaviour {
 	public GameObject Bg,top,mid,sub;
 	// Use this for initialization
@@ -43,32 +44,12 @@ public class futurerice : MonoBehaviour {
 	public void stringclick(){
 		FirstScreenSizeSetting.Instance.dad.Dimon ();
 		sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = true;
-		StartCoroutine ("datalod");
+		datalod ();
 
 	}
-
-	IEnumerator datalod(){
-		FirstScreenSizeSetting.Instance.LD.StartLoding ();
-		statusI = 1;
-		count = 14;
-		tempsp.Clear ();
-		FirstScreenSizeSetting.Instance.memory ();
-
-
-		for (int i = 1; i < count; i++) {
-			if (i >= 10) {
-				tempsp.Add (
-					FirstScreenSizeSetting.Instance.getsprite (fullpath + i.ToString ()));
-				Debug.Log (fullpath + i.ToString () + ".jpg");
-			} else {
-				tempsp.Add (
-					FirstScreenSizeSetting.Instance.getsprite (fullpath +"0"+ i.ToString ()));
-				Debug.Log (fullpath +"0"+ i.ToString () + ".jpg");
-			}
-			Debug.Log (tempsp[i-1].name);
-			yield return new WaitForFixedUpdate ();
-		}
-		yield return new WaitForSeconds (0.1f);
+	void getsprits(object o){
+		Sprite[] S = o as Sprite[];
+		tempsp = S.ToList ();
 		status = 0;
 		sub.transform.FindChild ("mask").GetChild (0).GetComponent<RectTransform> ().pivot = new Vector2 (0.5f,0.5f);
 		sub.transform.FindChild ("mask").GetComponent<RectTransform> ().sizeDelta = new Vector2 (V.x,V.y-120f);
@@ -87,6 +68,19 @@ public class futurerice : MonoBehaviour {
 		FirstScreenSizeSetting.Instance.ColorOnoff (top.transform.FindChild("mt").gameObject,1,0,0.75f,"C1",this.gameObject);
 		FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,sub.GetComponent<RectTransform>().anchoredPosition.y),sub,0.1f,"M1",this.gameObject,null);
 		FirstScreenSizeSetting.Instance.LD.EndLoding ();
+
+	}
+	void datalod(){
+		FirstScreenSizeSetting.Instance.LD.StartLoding ();
+		Lcount = 0;
+		Rcount = 0;
+		statusI = 1;
+		count = 14;
+		tempsp.Clear ();
+		FirstScreenSizeSetting.Instance.memory ();
+
+		FirstScreenSizeSetting.Instance.getsprites ("03_01",this.gameObject,"getsprits");
+
 	}
 
 	int status = 0;
@@ -127,74 +121,100 @@ public class futurerice : MonoBehaviour {
 //		sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = true;
 //		sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = true;
 	}
+	int Lcount = 0;
+	int Rcount = 0;
 	public void L(){
-		sub.transform.FindChild ("L").gameObject.SetActive (true);
-		sub.transform.FindChild ("R").gameObject.SetActive (true);
-		status--;
-		if (status <= 0) {
-			status = 0;
+		if (Rcount == 0) {
+			sub.transform.FindChild ("L").gameObject.SetActive (true);
+			sub.transform.FindChild ("R").gameObject.SetActive (true);
+			status--;
+			if (status <= 0) {
+				status = 0;
 		
-		}
-		if (sub.transform.FindChild("mask").GetChild(0).GetComponent<Image> ().sprite != tempsp [status]) {
-			GameObject Tg = TempG ();
-			sub.transform.FindChild ("mask").GetChild(0).GetComponent<Image> ().sprite = tempsp [status];
+			}
+			if (sub.transform.FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite != tempsp [status]) {
+				GameObject Tg = TempG ();
+				sub.transform.FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite = tempsp [status];
 //			sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;
 //			sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = false;
 	
-			sub.transform.FindChild ("mask").GetChild (0).transform.localScale = new Vector3 (1,1,1);
-			sub.transform.FindChild ("mask").GetChild (0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 0);
-			sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = false;
-			Tg.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
-			Tg.SetActive (true);
-			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(V.x,0),Tg,0.1f,"M2",this.gameObject,Tg);
-		}
-		if (status == 0) {
-			sub.transform.FindChild ("L").gameObject.SetActive (false);
-		}
-		if (status == count - 2) {
-			sub.transform.FindChild ("R").gameObject.SetActive (false);
+				sub.transform.FindChild ("mask").GetChild (0).transform.localScale = new Vector3 (1, 1, 1);
+				sub.transform.FindChild ("mask").GetChild (0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 0);
+				sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = false;
+				Tg.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 0);
+				Tg.SetActive (true);
+				FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2 (V.x, 0), Tg, 0.1f, "M2l", this.gameObject, Tg);
+				Lcount++;
+			}
+			if (status == 0) {
+				sub.transform.FindChild ("L").gameObject.SetActive (false);
+			}
+			if (status == count - 2) {
+				sub.transform.FindChild ("R").gameObject.SetActive (false);
+			}
 		}
 	}
 	public void R(){
-		sub.transform.FindChild ("L").gameObject.SetActive (true);
-		sub.transform.FindChild ("R").gameObject.SetActive (true);
+		if (Lcount == 0) {
+			sub.transform.FindChild ("L").gameObject.SetActive (true);
+			sub.transform.FindChild ("R").gameObject.SetActive (true);
 			status++;
-		if (status >= count - 2) {
-			status = count - 2;
-		}
-		if (sub.transform.FindChild("mask").GetChild(0).GetComponent<Image> ().sprite != tempsp [status]) {
-			GameObject Tg = TempG ();
-			Tg.transform.GetChild(0).GetComponent<Image> ().sprite = tempsp [status];
+			if (status >= count - 2) {
+				status = count - 2;
+			}
+			if (sub.transform.FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite != tempsp [status]) {
+				GameObject Tg = TempG ();
+				Tg.transform.GetChild (0).GetComponent<Image> ().sprite = tempsp [status];
 //				sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = false;
 //			sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = false;
-			sub.transform.FindChild ("mask").GetChild (0).transform.localScale = new Vector3 (1,1,1);
-			sub.transform.FindChild ("mask").GetChild (0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 0);
-			sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = false;
+				sub.transform.FindChild ("mask").GetChild (0).transform.localScale = new Vector3 (1, 1, 1);
+				sub.transform.FindChild ("mask").GetChild (0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 0);
+				sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = false;
 				Tg.gameObject.SetActive (true);
-			FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2(0,0),Tg,0.1f,"M2",this.gameObject,Tg);
+				FirstScreenSizeSetting.Instance.SMoveAtoB (new Vector2 (0, 0), Tg, 0.1f, "M2r", this.gameObject, Tg);
+				Rcount++;
 			}
-		if (status == 0) {
-			sub.transform.FindChild ("L").gameObject.SetActive (false);
-		}
-		if (status == count - 2) {
-			sub.transform.FindChild ("R").gameObject.SetActive (false);
-		}
+			if (status == 0) {
+				sub.transform.FindChild ("L").gameObject.SetActive (false);
+			}
+			if (status == count - 2) {
+				sub.transform.FindChild ("R").gameObject.SetActive (false);
+			}
 
-
+		}
 	}
-	void M2(object o){
+	void M2r(object o){
 		GameObject O = (GameObject)o;
-		sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().smooth = false;
-		sub.transform.FindChild ("mask").GetChild(0).GetComponent<Image> ().sprite = tempsp [status];
-		sub.transform.FindChild ("mask").GetChild (0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
-		sub.transform.FindChild ("mask").GetChild (0).transform.localScale = new Vector3 (1, 1, 1);
+		if (sub.transform.FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite != tempsp [status]) {
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().smooth = false;
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite = O.transform.GetChild (0).GetComponent<Image> ().sprite;
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 0);
+			sub.transform.FindChild ("mask").GetChild (0).transform.localScale = new Vector3 (1, 1, 1);
+		}
 		Tlist.Remove (O);
 		Destroy (O);
 
 		sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = true;
 		sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = true;
 		sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = true;
-	
+		Rcount--;
+
+	}
+	void M2l(object o){
+		GameObject O = (GameObject)o;
+		if (sub.transform.FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite != tempsp [status]) {
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().smooth = false;
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<Image> ().sprite = O.transform.GetChild (0).GetComponent<Image> ().sprite;
+			sub.transform.FindChild ("mask").GetChild (0).GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, 0);
+			sub.transform.FindChild ("mask").GetChild (0).transform.localScale = new Vector3 (1, 1, 1);
+		}
+		Tlist.Remove (O);
+		Destroy (O);
+
+		sub.transform.FindChild ("L").GetComponent<Image> ().raycastTarget = true;
+		sub.transform.FindChild ("R").GetComponent<Image> ().raycastTarget = true;
+		sub.transform.FindChild ("mask").GetChild (0).GetComponent<PinchZoomandview> ().enabled = true;
+		Lcount--;
 
 	}
 	int statusI = 0;
