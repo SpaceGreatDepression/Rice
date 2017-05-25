@@ -336,12 +336,22 @@ public class FirstScreenSizeSetting : MonoBehaviour {
 			for (int i = 0; i < s.Length; i++) {
 				Debug.Log("1 : " + s[i]);
 			}
-			Sprite[] gameObj = assetBundle.LoadAllAssets<Sprite>();
+		//	Sprite[] gameObj = assetBundle.LoadAllAssets<Sprite>();
+			AssetBundleRequest SBl = assetBundle.LoadAllAssetsAsync<Sprite>();
+			//Sprite[] gameObj = assetBundle.LoadAssetsAsync<Sprite>();
+		
+			while (!SBl.isDone) {
+				Debug.Log (SBl.progress);
+				yield return null;
+			}
+
+			Sprite[] gameObj = SBl.allAssets as Sprite[];
 //			Debug.Log (gameObj.Length + "!!");
 //			List<Sprite> LSp = new List<Sprite> ();
 //			for (int i = 0; i < gameObj.Length; i++) {
 //				LSp.Add (gameObj[i] as Sprite);
 //			}
+
 			Debug.Log (sand + "!sand!");
 			target.SendMessage (sand,(object)gameObj);
 
